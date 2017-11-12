@@ -82,20 +82,16 @@ class PbVarInt implements PbValue {
             data[offset] = 0;
             return;
         }
-        long tmp = 0L;
         int i = 0;
         if (this.value > 0) {
-
             while (v > 0) {
-                tmp = 0xff & v;
-                if (tmp < BIT_7) {
-                    data[offset + i] = (byte) tmp;
-                    return;
-                } else {
-                    data[offset + i] = (byte) tmp;
-                    i ++;
-                    v = v >> 7;
+                if(v < BIT_7){
+                    data[offset + i] = (byte) (0x7f & v);
+                }else {
+                    data[offset + i] = (byte) ( 0x80 | (0x7f & v));
                 }
+                i ++;
+                v = v >> 7;
             }
         }else {
 

@@ -11,13 +11,17 @@ public class PbVarIntTest {
     @Test
     public void readTest(){
         List<Long> list = new ArrayList<>();
-        list.add(-2L);
-        list.add(-1L);
         list.add(0L);
-        list.add(1L);
-        list.add(2L);
+        for (long v = 1; v < 10000; v ++){
+            list.add(v);
+        }
+
+        list.add((long)Integer.MAX_VALUE);
         list.add(Long.MAX_VALUE);
-        list.add(Long.MAX_VALUE + 1);
+        for (long v = -1; v > -10000; v--){
+            list.add(v);
+        }
+        list.add(Long.MIN_VALUE);
 
         for (long v : list){
             DynaPb.Foo.Builder builder = DynaPb.Foo.newBuilder();
@@ -36,12 +40,15 @@ public class PbVarIntTest {
         List<Long> list = new ArrayList<>();
 
         list.add(0L);
-        list.add(1L);
-        list.add(2L);
-        list.add(Long.MAX_VALUE);
+        for (long v = 1; v < 10000; v ++){
+            list.add(v);
+        }
 
-        list.add(-1L);
-        list.add(-2L);
+        list.add((long)Integer.MAX_VALUE);
+        list.add(Long.MAX_VALUE);
+        for (long v = -1; v > -10000; v--){
+            list.add(v);
+        }
         list.add(Long.MIN_VALUE);
         for (long v : list){
             DynaPb.Foo.Builder builder = DynaPb.Foo.newBuilder();
