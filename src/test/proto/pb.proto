@@ -2,6 +2,11 @@ syntax = "proto2";
 
 option java_package = "org.alking.dynapb";
 option java_outer_classname = "DynaPb";
+
 message Foo {
-	required int32 var_int = 1;
+	optional int64 var_int = 1;
+	optional float var_float = 2;
+	optional double var_double = 3;
+	optional bool var_bool = 4;
+
 }

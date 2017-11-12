@@ -13,13 +13,40 @@ public final class DynaPb {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required int32 var_int = 1;</code>
+     * <code>optional int64 var_int = 1;</code>
      */
     boolean hasVarInt();
     /**
-     * <code>required int32 var_int = 1;</code>
+     * <code>optional int64 var_int = 1;</code>
      */
-    int getVarInt();
+    long getVarInt();
+
+    /**
+     * <code>optional float var_float = 2;</code>
+     */
+    boolean hasVarFloat();
+    /**
+     * <code>optional float var_float = 2;</code>
+     */
+    float getVarFloat();
+
+    /**
+     * <code>optional double var_double = 3;</code>
+     */
+    boolean hasVarDouble();
+    /**
+     * <code>optional double var_double = 3;</code>
+     */
+    double getVarDouble();
+
+    /**
+     * <code>optional bool var_bool = 4;</code>
+     */
+    boolean hasVarBool();
+    /**
+     * <code>optional bool var_bool = 4;</code>
+     */
+    boolean getVarBool();
   }
   /**
    * Protobuf type {@code Foo}
@@ -75,7 +102,22 @@ public final class DynaPb {
             }
             case 8: {
               bitField0_ |= 0x00000001;
-              varInt_ = input.readInt32();
+              varInt_ = input.readInt64();
+              break;
+            }
+            case 21: {
+              bitField0_ |= 0x00000002;
+              varFloat_ = input.readFloat();
+              break;
+            }
+            case 25: {
+              bitField0_ |= 0x00000004;
+              varDouble_ = input.readDouble();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              varBool_ = input.readBool();
               break;
             }
           }
@@ -119,22 +161,70 @@ public final class DynaPb {
 
     private int bitField0_;
     public static final int VAR_INT_FIELD_NUMBER = 1;
-    private int varInt_;
+    private long varInt_;
     /**
-     * <code>required int32 var_int = 1;</code>
+     * <code>optional int64 var_int = 1;</code>
      */
     public boolean hasVarInt() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required int32 var_int = 1;</code>
+     * <code>optional int64 var_int = 1;</code>
      */
-    public int getVarInt() {
+    public long getVarInt() {
       return varInt_;
     }
 
+    public static final int VAR_FLOAT_FIELD_NUMBER = 2;
+    private float varFloat_;
+    /**
+     * <code>optional float var_float = 2;</code>
+     */
+    public boolean hasVarFloat() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional float var_float = 2;</code>
+     */
+    public float getVarFloat() {
+      return varFloat_;
+    }
+
+    public static final int VAR_DOUBLE_FIELD_NUMBER = 3;
+    private double varDouble_;
+    /**
+     * <code>optional double var_double = 3;</code>
+     */
+    public boolean hasVarDouble() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional double var_double = 3;</code>
+     */
+    public double getVarDouble() {
+      return varDouble_;
+    }
+
+    public static final int VAR_BOOL_FIELD_NUMBER = 4;
+    private boolean varBool_;
+    /**
+     * <code>optional bool var_bool = 4;</code>
+     */
+    public boolean hasVarBool() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional bool var_bool = 4;</code>
+     */
+    public boolean getVarBool() {
+      return varBool_;
+    }
+
     private void initFields() {
-      varInt_ = 0;
+      varInt_ = 0L;
+      varFloat_ = 0F;
+      varDouble_ = 0D;
+      varBool_ = false;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -142,10 +232,6 @@ public final class DynaPb {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasVarInt()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -154,7 +240,16 @@ public final class DynaPb {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, varInt_);
+        output.writeInt64(1, varInt_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeFloat(2, varFloat_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeDouble(3, varDouble_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBool(4, varBool_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -167,7 +262,19 @@ public final class DynaPb {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, varInt_);
+          .computeInt64Size(1, varInt_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(2, varFloat_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(3, varDouble_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, varBool_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -286,8 +393,14 @@ public final class DynaPb {
 
       public Builder clear() {
         super.clear();
-        varInt_ = 0;
+        varInt_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000001);
+        varFloat_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        varDouble_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        varBool_ = false;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -320,6 +433,18 @@ public final class DynaPb {
           to_bitField0_ |= 0x00000001;
         }
         result.varInt_ = varInt_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.varFloat_ = varFloat_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.varDouble_ = varDouble_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.varBool_ = varBool_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -339,15 +464,20 @@ public final class DynaPb {
         if (other.hasVarInt()) {
           setVarInt(other.getVarInt());
         }
+        if (other.hasVarFloat()) {
+          setVarFloat(other.getVarFloat());
+        }
+        if (other.hasVarDouble()) {
+          setVarDouble(other.getVarDouble());
+        }
+        if (other.hasVarBool()) {
+          setVarBool(other.getVarBool());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
       public final boolean isInitialized() {
-        if (!hasVarInt()) {
-          
-          return false;
-        }
         return true;
       }
 
@@ -370,34 +500,130 @@ public final class DynaPb {
       }
       private int bitField0_;
 
-      private int varInt_ ;
+      private long varInt_ ;
       /**
-       * <code>required int32 var_int = 1;</code>
+       * <code>optional int64 var_int = 1;</code>
        */
       public boolean hasVarInt() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required int32 var_int = 1;</code>
+       * <code>optional int64 var_int = 1;</code>
        */
-      public int getVarInt() {
+      public long getVarInt() {
         return varInt_;
       }
       /**
-       * <code>required int32 var_int = 1;</code>
+       * <code>optional int64 var_int = 1;</code>
        */
-      public Builder setVarInt(int value) {
+      public Builder setVarInt(long value) {
         bitField0_ |= 0x00000001;
         varInt_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required int32 var_int = 1;</code>
+       * <code>optional int64 var_int = 1;</code>
        */
       public Builder clearVarInt() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        varInt_ = 0;
+        varInt_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private float varFloat_ ;
+      /**
+       * <code>optional float var_float = 2;</code>
+       */
+      public boolean hasVarFloat() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional float var_float = 2;</code>
+       */
+      public float getVarFloat() {
+        return varFloat_;
+      }
+      /**
+       * <code>optional float var_float = 2;</code>
+       */
+      public Builder setVarFloat(float value) {
+        bitField0_ |= 0x00000002;
+        varFloat_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional float var_float = 2;</code>
+       */
+      public Builder clearVarFloat() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        varFloat_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private double varDouble_ ;
+      /**
+       * <code>optional double var_double = 3;</code>
+       */
+      public boolean hasVarDouble() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional double var_double = 3;</code>
+       */
+      public double getVarDouble() {
+        return varDouble_;
+      }
+      /**
+       * <code>optional double var_double = 3;</code>
+       */
+      public Builder setVarDouble(double value) {
+        bitField0_ |= 0x00000004;
+        varDouble_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional double var_double = 3;</code>
+       */
+      public Builder clearVarDouble() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        varDouble_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private boolean varBool_ ;
+      /**
+       * <code>optional bool var_bool = 4;</code>
+       */
+      public boolean hasVarBool() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional bool var_bool = 4;</code>
+       */
+      public boolean getVarBool() {
+        return varBool_;
+      }
+      /**
+       * <code>optional bool var_bool = 4;</code>
+       */
+      public Builder setVarBool(boolean value) {
+        bitField0_ |= 0x00000008;
+        varBool_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool var_bool = 4;</code>
+       */
+      public Builder clearVarBool() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        varBool_ = false;
         onChanged();
         return this;
       }
@@ -427,8 +653,10 @@ public final class DynaPb {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016proto/pb.proto\"\026\n\003Foo\022\017\n\007var_int\030\001 \002(\005" +
-      "B\033\n\021org.alking.dynapbB\006DynaPb"
+      "\n\016proto/pb.proto\"O\n\003Foo\022\017\n\007var_int\030\001 \001(\003" +
+      "\022\021\n\tvar_float\030\002 \001(\002\022\022\n\nvar_double\030\003 \001(\001\022" +
+      "\020\n\010var_bool\030\004 \001(\010B\033\n\021org.alking.dynapbB\006" +
+      "DynaPb"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -447,7 +675,7 @@ public final class DynaPb {
     internal_static_Foo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_Foo_descriptor,
-        new java.lang.String[] { "VarInt", });
+        new java.lang.String[] { "VarInt", "VarFloat", "VarDouble", "VarBool", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
