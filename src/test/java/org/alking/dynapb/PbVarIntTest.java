@@ -8,20 +8,26 @@ import java.util.List;
 
 public class PbVarIntTest {
 
-    @Test
-    public void readTest(){
+    private List<Long> genList(){
         List<Long> list = new ArrayList<>();
         list.add(0L);
-        for (long v = 1; v < 10000; v ++){
+
+        for (long v = 1; v < 10000; v +=100){
             list.add(v);
         }
 
-        list.add((long)Integer.MAX_VALUE);
         list.add(Long.MAX_VALUE);
-        for (long v = -1; v > -10000; v--){
+
+        for (long v = -1; v > -10000; v-=100){
             list.add(v);
         }
         list.add(Long.MIN_VALUE);
+        return list;
+    }
+
+    @Test
+    public void readTest(){
+        List<Long> list = this.genList();
 
         for (long v : list){
             DynaPb.Foo.Builder builder = DynaPb.Foo.newBuilder();
@@ -31,25 +37,14 @@ public class PbVarIntTest {
             byte[]  bytes = foo.toByteArray();
             PbVarInt pbVarInt = new PbVarInt();
             pbVarInt.read(bytes, 1);
-            Assert.assertEquals(v, pbVarInt.getValue());
+            Assert.assertEquals(v, pbVarInt.longValue());
+            System.out.println(String.format("read %d passed", v));
         }
     }
 
     @Test
     public void writeTest(){
-        List<Long> list = new ArrayList<>();
-
-        list.add(0L);
-        for (long v = 1; v < 10000; v ++){
-            list.add(v);
-        }
-
-        list.add((long)Integer.MAX_VALUE);
-        list.add(Long.MAX_VALUE);
-        for (long v = -1; v > -10000; v--){
-            list.add(v);
-        }
-        list.add(Long.MIN_VALUE);
+        List<Long> list = this.genList();
         for (long v : list){
             DynaPb.Foo.Builder builder = DynaPb.Foo.newBuilder();
             builder.setVarInt(v);
@@ -60,7 +55,6 @@ public class PbVarIntTest {
             bytes2[0] = bytes[0];
             PbVarInt pbVarInt  = new PbVarInt(v);
             pbVarInt.write(bytes2, 1);
-            System.out.println(String.format("write %d ......", v));
             Assert.assertArrayEquals( bytes, bytes2);
             System.out.println(String.format("write %d passed", v));
 

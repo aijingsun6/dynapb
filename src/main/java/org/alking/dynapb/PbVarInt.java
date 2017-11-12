@@ -1,20 +1,25 @@
 package org.alking.dynapb;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.LongBuffer;
 
 class PbVarInt implements PbValue {
 
     private static final int BIT_7 = 1 << 7;
     private static final int BYTES_MAX = 10;
+    /**
+     * thread safe
+     */
+    private static final ThreadLocal<byte[]> localBytes = new ThreadLocal<byte[]>(){
+        @Override
+        protected byte[] initialValue() {
+            byte[] data = new byte[16];
+            return data;
+        }
+    };
     private long value;
-
-    public long getValue() {
-        return value;
-    }
 
     PbVarInt() {
 
@@ -32,23 +37,66 @@ class PbVarInt implements PbValue {
         this.value = l;
     }
 
-
     @Override
     public int size() {
-        if (this.value < 0L) {
-            return BYTES_MAX;
+        if(this.value == 0){
+            return 1;
         }
-        long v = this.value;
+
         int size = 0;
-        while (v >= BIT_7) {
-            size++;
-            v = v >> 7;
+        long v = this.value;
+        // value > 0
+        if(this.value > 0){
+            while (v > 0) {
+                size ++;
+                v = v >> 7;
+            }
+            return size;
         }
-        return size;
+        // value < 0
+        return  BYTES_MAX;
     }
 
     @Override
-    public void read(byte[] data, int offset) {
+    public WireType type() {
+        return WireType.VARINT;
+    }
+
+    @Override
+    public boolean boolValue() {
+        return this.value != 0;
+    }
+
+    @Override
+    public int intValue() {
+        if(this.value > Integer.MAX_VALUE || this.value < Integer.MIN_VALUE){
+            throw new PbException(String.format("%d out of int range", this.value));
+        }
+        return (int)this.value;
+    }
+
+    @Override
+    public long longValue() {
+        return this.value;
+    }
+
+    @Override
+    public float floatValue() {
+        throw new PbException("wire type not match");
+    }
+
+    @Override
+    public double doubleValue() {
+        throw new PbException("wire type not match");
+    }
+
+    @Override
+    public String stringValue() {
+        throw new PbException("wire type not match");
+    }
+
+    @Override
+    public int read(byte[] data, int offset) {
         if (data == null) {
             throw new IllegalArgumentException("data");
         }
@@ -57,76 +105,120 @@ class PbVarInt implements PbValue {
         }
         // check var int format
         boolean allMoreThan128 = true;
-        int size = 1;
+        int size = 0;
         for (int i = 0; i < BYTES_MAX; i++) {
+            size ++;
             if ((data[offset + i] & 0xff) < BIT_7) {
+                // find first value < 128
                 allMoreThan128 = false;
                 break;
-            } else {
-                size += 1;
             }
         }
         if (allMoreThan128) {
-            throw new IllegalArgumentException("var int format error");
+            throw new PbException("var int format error");
         }
         this.value = 0;
         for (int i = 0; i < size; i++) {
             this.value += (long) (0x7f & data[offset + i]) << (7 * i);
         }
+        return size;
     }
 
     @Override
-    public void write(byte[] data, int offset) {
-        long v = this.value;
-        if(v == 0){
+    public int write(byte[] data, int offset) {
+        // value = 0
+        if(this.value == 0){
             data[offset] = 0;
-            return;
+            return 1;
         }
-        int i = 0;
-        if (this.value > 0) {
+
+        int size = 0;
+        long v = this.value;
+        // value > 0
+        if(this.value > 0){
             while (v > 0) {
                 if(v < BIT_7){
-                    data[offset + i] = (byte) (0x7f & v);
+                    data[offset+size] = (byte) (0x7f & v);
                 }else {
-                    data[offset + i] = (byte) ( 0x80 | (0x7f & v));
+                    data[offset+size] = (byte) ( 0x80 | (0x7f & v));
                 }
-                i ++;
+                size ++;
                 v = v >> 7;
             }
-        }else {
-
-            ByteBuffer bb = ByteBuffer.allocate(8);
-            bb.order( ByteOrder.LITTLE_ENDIAN );
-            LongBuffer lb = bb.asLongBuffer();
-            lb.put(v);
-            v = v & Long.MAX_VALUE;
-            for (int j = 0; j < BYTES_MAX - 1;j++){
-                data[offset + i] = (byte) (v | 0x80);
-                i ++;
-                v = v >> 7;
-            }
-            data[ offset + i]  = 1;
+            return size;
         }
+        // value < 0
+        v = v & Long.MAX_VALUE;
+        for (int j = 0; j < BYTES_MAX - 1;j++){
+            data[offset + size] = (byte) (v | 0x80);
+            size ++;
+            v = v >> 7;
+        }
+        data[offset + size] = 1;
+        return BYTES_MAX;
     }
 
     @Override
-    public void read(InputStream is) {
+    public int read(InputStream is) throws IOException {
+        if(is == null){
+            throw new IllegalArgumentException("input stream is null.");
+        }
+        this.value = 0L;
+        int offset = 0;
+        int size = 0;
+        int tmp = 0;
+        byte[] tBytes = localBytes.get();
+        while ( is.read(tBytes, offset, 1) > 0 ){
+            if(size > BYTES_MAX){
+                throw new PbException("var int format error");
+            }
+            tmp = tBytes[offset] & 0xff;
+            this.value += (long) (0x7f & tmp) << (7 * size);
+            size ++;
+            if(tmp < BIT_7){
+                return size;
+            }
+        }
+        return size;
+    }
+
+    @Override
+    public int write(OutputStream os) throws IOException {
+        byte[] tBytes = localBytes.get();
+        int size = write(tBytes, 0);
+        os.write(tBytes,0,size);
+        return size;
 
     }
 
     @Override
-    public void write(OutputStream os) {
-
+    public int read(ByteBuffer buffer) {
+        if(buffer == null){
+            throw new IllegalArgumentException("input stream is null.");
+        }
+        this.value = 0L;
+        int size = 0;
+        int tmp = 0;
+        while ( buffer.hasRemaining() ){
+            if(size > BYTES_MAX){
+                throw new PbException("var int format error");
+            }
+            tmp = buffer.get() & 0xff;
+            this.value += (long) (0x7f & tmp) << (7 * size);
+            size ++;
+            if(tmp < BIT_7){
+                return size;
+            }
+        }
+        return size;
     }
 
     @Override
-    public void read(ByteBuffer buffer) {
-
-    }
-
-    @Override
-    public void write(ByteBuffer buffer) {
-
+    public int write(ByteBuffer buffer) {
+        byte[] tBytes = localBytes.get();
+        int size = write(tBytes, 0);
+        buffer.put(tBytes, 0, size);
+        return size;
     }
 
     @Override
