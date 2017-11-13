@@ -22,7 +22,7 @@ final class PbMessage implements PbRW {
         this.fields.add(field);
     }
 
-    public List<PbField> getField(int fieldNum){
+    public List<PbField> getFieldList(int fieldNum){
         List<PbField> result = new ArrayList<>();
         for(PbField f: this.fields){
             if(f.getFieldNum() == fieldNum){

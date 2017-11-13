@@ -27,7 +27,7 @@ public class PbMessageTest {
         PbMessage msg = new PbMessage();
         msg.read(data,0, data.length);
 
-        List<PbField> sf = msg.getField(5);
+        List<PbField> sf = msg.getFieldList(5);
         Assert.assertTrue(sf.size() == 1);
         // check i am ok string
         PbValue sfv = (PbValue) sf.get(0).getValue();
