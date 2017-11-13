@@ -60,4 +60,48 @@ public class PbVarIntTest {
 
         }
     }
+
+    @Test
+    public void boolReadTest(){
+        DynaPb.Foo.Builder builder = DynaPb.Foo.newBuilder();
+        builder.setVarBool(true);
+        DynaPb.Foo foo = builder.build();
+        byte[]  bytes = foo.toByteArray();
+        PbVarInt pbVarInt = new PbVarInt();
+        pbVarInt.read(bytes, 1);
+        Assert.assertTrue(pbVarInt.boolValue());
+
+        builder = DynaPb.Foo.newBuilder();
+        builder.setVarBool(false);
+        foo = builder.build();
+        bytes = foo.toByteArray();
+        pbVarInt = new PbVarInt();
+        pbVarInt.read(bytes, 1);
+        Assert.assertFalse(pbVarInt.boolValue());
+    }
+
+    @Test
+    public void boolWriteTest(){
+        DynaPb.Foo.Builder builder = DynaPb.Foo.newBuilder();
+        builder.setVarBool(true);
+        DynaPb.Foo foo = builder.build();
+        byte[] bytes = foo.toByteArray();
+        byte[] bytes2 = new byte[bytes.length];
+        bytes2[0] = bytes[0];
+        PbVarInt pbVarInt  = new PbVarInt(true);
+        pbVarInt.write(bytes2, 1);
+        Assert.assertArrayEquals( bytes, bytes2);
+
+        builder = DynaPb.Foo.newBuilder();
+        builder.setVarBool(false);
+        foo = builder.build();
+        bytes = foo.toByteArray();
+        bytes2 = new byte[bytes.length];
+        bytes2[0] = bytes[0];
+        pbVarInt  = new PbVarInt(false);
+        pbVarInt.write(bytes2, 1);
+        Assert.assertArrayEquals( bytes, bytes2);
+    }
+
+
 }
