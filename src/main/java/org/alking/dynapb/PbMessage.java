@@ -1,6 +1,6 @@
 package org.alking.dynapb;
 
-class PbMessage {
+final class PbMessage {
 
 
 }
