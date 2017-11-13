@@ -121,4 +121,9 @@ final class PbBit32 extends PbValue {
     public WireType wireType() {
         return WireType.BIT32;
     }
+
+    @Override
+    public String toString() {
+        return String.format("bit32 %f",this.value);
+    }
 }

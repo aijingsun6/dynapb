@@ -218,7 +218,7 @@ final class PbVarInt extends PbValue {
 
     @Override
     public String toString() {
-        return String.valueOf(value);
+        return String.format("var int %d",this.value);
     }
 
     @Override

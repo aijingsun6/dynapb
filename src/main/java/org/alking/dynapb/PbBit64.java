@@ -125,4 +125,8 @@ final class PbBit64 extends PbValue {
         df.put(this.value);
         return SIZE;
     }
+    @Override
+    public String toString() {
+        return String.format("bit64 %f",this.value);
+    }
 }
