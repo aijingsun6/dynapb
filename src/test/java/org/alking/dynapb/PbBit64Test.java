@@ -8,10 +8,10 @@ public class PbBit64Test {
     @Test
     public void readTest(){
         double origin = 1.6d;
-        DynaPbTest.Foo.Builder builder = DynaPbTest.Foo.newBuilder();
+        FooBar.Foo.Builder builder = FooBar.Foo.newBuilder();
         builder.setVarDouble(origin);
 
-        DynaPbTest.Foo foo = builder.build();
+        FooBar.Foo foo = builder.build();
         byte[]  bytes = foo.toByteArray();
         PbBit64 bit64 = new PbBit64();
         bit64.read(bytes, 1, 0);
@@ -21,10 +21,10 @@ public class PbBit64Test {
     @Test
     public void writeTest(){
         double origin = 1.6d;
-        DynaPbTest.Foo.Builder builder = DynaPbTest.Foo.newBuilder();
+        FooBar.Foo.Builder builder = FooBar.Foo.newBuilder();
         builder.setVarDouble(origin);
 
-        DynaPbTest.Foo foo = builder.build();
+        FooBar.Foo foo = builder.build();
         byte[] bytes = foo.toByteArray();
         byte[] bytes2 = new byte[bytes.length];
         bytes2[0] = bytes[0];
