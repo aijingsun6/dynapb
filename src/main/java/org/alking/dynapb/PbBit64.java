@@ -1,6 +1,8 @@
 package org.alking.dynapb;
 
 
+import org.apache.commons.io.IOUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -20,22 +22,12 @@ public class PbBit64 implements PbValue {
             return data;
         }
     };
-
-    private static final ThreadLocal<ByteBuffer> localBF = new ThreadLocal<ByteBuffer>(){
-        @Override
-        protected ByteBuffer initialValue() {
-            ByteBuffer bb = ByteBuffer.allocate(SIZE);
-            bb.order(ByteOrder.LITTLE_ENDIAN);
-            return bb;
-        }
-    };
-
     private double value;
 
-    public PbBit64() {
+    PbBit64() {
     }
 
-    public PbBit64(double value) {
+    PbBit64(double value) {
         this.value = value;
     }
 
@@ -80,11 +72,15 @@ public class PbBit64 implements PbValue {
     }
 
     @Override
-    public int read(byte[] data, int offset) {
-        if(data == null || data.length < offset + SIZE){
+    public int read(final byte[] data, final int offset, final int limit) {
+        if(data == null){
+            throw new PbException("data is null");
+        }
+        if(data.length < offset + SIZE){
             throw new IllegalArgumentException("data error");
         }
-        ByteBuffer bf = localBF.get();
+        ByteBuffer bf = ByteBuffer.allocate(SIZE);
+        bf.order(ByteOrder.LITTLE_ENDIAN);
         DoubleBuffer db = bf.asDoubleBuffer();
         bf.put(data, offset, SIZE);
         this.value = db.get();
@@ -92,8 +88,9 @@ public class PbBit64 implements PbValue {
     }
 
     @Override
-    public int write(byte[] data, int offset) {
-        ByteBuffer bf = localBF.get();
+    public int write(final byte[] data, final int offset) {
+        ByteBuffer bf = ByteBuffer.allocate(SIZE);
+        bf.order(ByteOrder.LITTLE_ENDIAN);
         DoubleBuffer db = bf.asDoubleBuffer();
         db.put(this.value);
         bf.get(data, offset, SIZE);
@@ -101,21 +98,14 @@ public class PbBit64 implements PbValue {
     }
 
     @Override
-    public int read(InputStream is) throws IOException {
+    public int read(final InputStream is, int limit) throws IOException {
         byte[] tBytes = localBytes.get();
-        int offset = 0;
-        int size = 0;
-        int read = 0;
-        while (size < SIZE){
-            read = is.read(tBytes, offset, SIZE - size);
-            offset += read;
-            size += read;
-        }
-        return this.read(tBytes, 0);
+        IOUtils.read(is, tBytes, 0, SIZE);
+        return this.read(tBytes, 0, limit);
     }
 
     @Override
-    public int write(OutputStream os) throws IOException {
+    public int write(final OutputStream os) throws IOException {
         byte[] tBytes = localBytes.get();
         int size = this.write(tBytes,0);
         os.write(tBytes,0, size);
@@ -123,14 +113,14 @@ public class PbBit64 implements PbValue {
     }
 
     @Override
-    public int read(ByteBuffer buffer) {
+    public int read(final ByteBuffer buffer, final int limit) {
         FloatBuffer bf = buffer.asFloatBuffer();
         this.value = bf.get();
         return SIZE;
     }
 
     @Override
-    public int write(ByteBuffer buffer) {
+    public int write(final ByteBuffer buffer) {
         DoubleBuffer df = buffer.asDoubleBuffer();
         df.put(this.value);
         return SIZE;

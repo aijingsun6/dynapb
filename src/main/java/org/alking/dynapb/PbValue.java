@@ -23,15 +23,15 @@ interface PbValue {
 
     String stringValue();
 
-    int read(byte[] data, int offset);
+    int read(final byte[] data, final int offset, final int limit);
 
-    int write(byte[] data, int offset);
+    int write(final byte[] data, final int offset);
 
-    int read(InputStream is) throws IOException;
+    int read(final InputStream is, final int limit) throws IOException;
 
-    int write(OutputStream os) throws IOException;
+    int write(final OutputStream os) throws IOException;
 
-    int read(ByteBuffer buffer);
+    int read(final ByteBuffer buffer, final int limit);
 
-    int write(ByteBuffer buffer);
+    int write(final ByteBuffer buffer);
 }

@@ -15,7 +15,7 @@ public class PbBit32Test {
         DynaPb.Foo foo = builder.build();
         byte[]  bytes = foo.toByteArray();
         PbBit32 bit32 = new PbBit32();
-        bit32.read(bytes, 1);
+        bit32.read(bytes, 1, 0);
         Assert.assertEquals(origin, bit32.floatValue(), 0.000001f);
     }
 

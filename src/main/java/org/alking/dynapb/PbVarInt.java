@@ -8,6 +8,7 @@ import java.nio.ByteBuffer;
 class PbVarInt implements PbValue {
 
     private static final int BIT_7 = 1 << 7;
+
     private static final int BYTES_MAX = 10;
     /**
      * thread safe
@@ -15,8 +16,7 @@ class PbVarInt implements PbValue {
     private static final ThreadLocal<byte[]> localBytes = new ThreadLocal<byte[]>(){
         @Override
         protected byte[] initialValue() {
-            byte[] data = new byte[16];
-            return data;
+            return new byte[16];
         }
     };
     private long value;
@@ -96,12 +96,12 @@ class PbVarInt implements PbValue {
     }
 
     @Override
-    public int read(byte[] data, int offset) {
+    public int read(final byte[] data, final int offset, final int limit) {
         if (data == null) {
-            throw new IllegalArgumentException("data");
+            throw new PbException("data is null");
         }
         if (data.length < offset) {
-            throw new IllegalArgumentException("data");
+            throw new PbException("data not enough");
         }
         // check var int format
         boolean allMoreThan128 = true;
@@ -125,7 +125,7 @@ class PbVarInt implements PbValue {
     }
 
     @Override
-    public int write(byte[] data, int offset) {
+    public int write(final byte[] data, final int offset) {
         // value = 0
         if(this.value == 0){
             data[offset] = 0;
@@ -159,14 +159,14 @@ class PbVarInt implements PbValue {
     }
 
     @Override
-    public int read(InputStream is) throws IOException {
+    public int read(final InputStream is, final int limit) throws IOException {
         if(is == null){
             throw new IllegalArgumentException("input stream is null.");
         }
         this.value = 0L;
         int offset = 0;
         int size = 0;
-        int tmp = 0;
+        int tmp;
         byte[] tBytes = localBytes.get();
         while ( is.read(tBytes, offset, 1) > 0 ){
             if(size > BYTES_MAX){
@@ -183,7 +183,7 @@ class PbVarInt implements PbValue {
     }
 
     @Override
-    public int write(OutputStream os) throws IOException {
+    public int write(final OutputStream os) throws IOException {
         byte[] tBytes = localBytes.get();
         int size = write(tBytes, 0);
         os.write(tBytes,0,size);
@@ -192,13 +192,13 @@ class PbVarInt implements PbValue {
     }
 
     @Override
-    public int read(ByteBuffer buffer) {
+    public int read(final ByteBuffer buffer, final int limit) {
         if(buffer == null){
             throw new IllegalArgumentException("input stream is null.");
         }
         this.value = 0L;
         int size = 0;
-        int tmp = 0;
+        int tmp;
         while ( buffer.hasRemaining() ){
             if(size > BYTES_MAX){
                 throw new PbException("var int format error");
@@ -214,7 +214,7 @@ class PbVarInt implements PbValue {
     }
 
     @Override
-    public int write(ByteBuffer buffer) {
+    public int write(final ByteBuffer buffer) {
         byte[] tBytes = localBytes.get();
         int size = write(tBytes, 0);
         buffer.put(tBytes, 0, size);
