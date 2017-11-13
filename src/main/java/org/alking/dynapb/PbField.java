@@ -6,7 +6,7 @@ import java.io.OutputStream;
 import java.nio.ByteBuffer;
 
 /**
- * for field
+ * for java field
  */
 final class PbField implements PbRW {
 
