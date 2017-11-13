@@ -1,19 +1,44 @@
 package org.alking.dynapb;
 
-interface PbValue extends PbReader, PbWriter {
+abstract class PbValue implements PbRW {
 
-    WireType type();
+    abstract boolean boolValue();
 
-    boolean boolValue();
+    abstract int intValue();
 
-    int intValue();
+    abstract long longValue();
 
-    long longValue();
+    abstract float floatValue();
 
-    float floatValue();
+    abstract double doubleValue();
 
-    double doubleValue();
+    abstract String stringValue();
 
-    String stringValue();
+    public static PbValue valueOf(boolean b){
+        return new PbVarInt(b);
+    }
 
+    public static PbValue valueOf(int i){
+        return new PbVarInt(i);
+    }
+
+    public static PbValue valueOf(long l){
+        return new PbVarInt(l);
+    }
+
+    public static PbValue valueOf(float f){
+        return new PbBit32(f);
+    }
+
+    public static PbValue valueOf(double d){
+        return new PbBit64(d);
+    }
+
+    public static PbValue valueOf(String s){
+        return new PbBytes(s);
+    }
+
+    public static PbValue valueOf(byte[] data, int offset, int size){
+        return new PbBytes(data, offset, size);
+    }
 }

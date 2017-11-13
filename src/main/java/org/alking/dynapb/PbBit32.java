@@ -10,7 +10,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
-final class PbBit32 implements PbValue {
+final class PbBit32 extends PbValue {
 
     private static final int SIZE = 4;
 
@@ -33,11 +33,6 @@ final class PbBit32 implements PbValue {
     @Override
     public int size() {
         return SIZE;
-    }
-
-    @Override
-    public WireType type() {
-        return WireType.BIT32;
     }
 
     @Override
@@ -120,5 +115,10 @@ final class PbBit32 implements PbValue {
         FloatBuffer bf = buffer.asFloatBuffer();
         bf.put(this.value);
         return SIZE;
+    }
+
+    @Override
+    public WireType wireType() {
+        return WireType.BIT32;
     }
 }

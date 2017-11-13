@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 
-final class PbVarInt implements PbValue {
+final class PbVarInt extends PbValue {
 
     private static final int BIT_7 = 1 << 7;
 
@@ -55,11 +55,6 @@ final class PbVarInt implements PbValue {
         }
         // value < 0
         return  BYTES_MAX;
-    }
-
-    @Override
-    public WireType type() {
-        return WireType.VARINT;
     }
 
     @Override
@@ -224,5 +219,10 @@ final class PbVarInt implements PbValue {
     @Override
     public String toString() {
         return String.valueOf(value);
+    }
+
+    @Override
+    public WireType wireType() {
+        return WireType.VARINT;
     }
 }

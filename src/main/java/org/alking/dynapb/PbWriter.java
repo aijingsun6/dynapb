@@ -7,12 +7,6 @@ import java.nio.ByteBuffer;
 interface PbWriter {
 
     /**
-     * data size
-     * @return size in bytes
-     */
-    int size();
-
-    /**
      * write to bytes
      * @param data
      * @param offset

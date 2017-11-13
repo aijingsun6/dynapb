@@ -26,4 +26,17 @@ public enum WireType {
     private WireType(int code) {
         this.code = code;
     }
+    public static WireType valueOf(int code){
+        switch (code){
+            case 0:
+                return VARINT;
+            case 1:
+                return BIT64;
+            case 2:
+                return BYTES;
+            case 5:
+                return BIT32;
+        }
+        throw new PbException(String.format("unknown code %d",code));
+    }
 }

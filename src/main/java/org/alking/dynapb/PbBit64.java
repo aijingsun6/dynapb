@@ -11,7 +11,7 @@ import java.nio.ByteOrder;
 import java.nio.DoubleBuffer;
 import java.nio.FloatBuffer;
 
-final class PbBit64 implements PbValue {
+final class PbBit64 extends PbValue {
 
     private static final int SIZE = 8;
 
@@ -32,13 +32,13 @@ final class PbBit64 implements PbValue {
     }
 
     @Override
-    public int size() {
-        return SIZE;
+    public WireType wireType() {
+        return WireType.BIT64;
     }
 
     @Override
-    public WireType type() {
-        return WireType.BIT64;
+    public int size() {
+        return SIZE;
     }
 
     @Override

@@ -7,16 +7,10 @@ import java.nio.ByteBuffer;
 interface PbReader {
 
     /**
-     * data size
-     * @return size in bytes
-     */
-    int size();
-
-    /**
      * read from bytes
      * @param data
      * @param offset
-     * @param limit
+     * @param limit used when parse {@link PbBytes}
      * @return data size in bytes
      */
     int read(final byte[] data, final int offset, final int limit);
@@ -24,7 +18,7 @@ interface PbReader {
     /**
      * read from {@link InputStream}
      * @param is
-     * @param limit
+     * @param limit used when parse {@link PbBytes}
      * @return data size in bytes
      * @throws IOException
      */
@@ -33,7 +27,7 @@ interface PbReader {
     /**
      * read from {@link ByteBuffer}
      * @param buffer
-     * @param limit
+     * @param limit  used when parse {@link PbBytes}
      * @return data size in bytes
      */
     int read(final ByteBuffer buffer, final int limit);

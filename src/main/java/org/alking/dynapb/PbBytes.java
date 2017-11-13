@@ -8,7 +8,10 @@ import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 
-final class PbBytes implements PbValue {
+/**
+ * for {@link String} and byte[]
+ */
+final class PbBytes extends PbValue {
 
     private byte[] bytes;
 
@@ -41,13 +44,13 @@ final class PbBytes implements PbValue {
     }
 
     @Override
-    public int size() {
-        return this.size;
+    public WireType wireType() {
+        return WireType.BYTES;
     }
 
     @Override
-    public WireType type() {
-        return WireType.BYTES;
+    public int size() {
+        return this.size;
     }
 
     @Override
