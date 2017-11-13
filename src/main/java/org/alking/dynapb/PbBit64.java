@@ -85,9 +85,8 @@ public class PbBit64 implements PbValue {
             throw new IllegalArgumentException("data error");
         }
         ByteBuffer bf = localBF.get();
-        bf.clear();
-        bf.put(data, offset, SIZE);
         DoubleBuffer db = bf.asDoubleBuffer();
+        bf.put(data, offset, SIZE);
         this.value = db.get();
         return SIZE;
     }
@@ -95,7 +94,6 @@ public class PbBit64 implements PbValue {
     @Override
     public int write(byte[] data, int offset) {
         ByteBuffer bf = localBF.get();
-        bf.clear();
         DoubleBuffer db = bf.asDoubleBuffer();
         db.put(this.value);
         bf.get(data, offset, SIZE);

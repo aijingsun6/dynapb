@@ -84,9 +84,8 @@ public class PbBit32 implements PbValue {
             throw new IllegalArgumentException("data error");
         }
         ByteBuffer bf = localBF.get();
-        bf.clear();
-        bf.put(data, offset, SIZE);
         FloatBuffer fb = bf.asFloatBuffer();
+        bf.put(data, offset, SIZE);
         this.value = fb.get();
         return SIZE;
     }
@@ -94,7 +93,6 @@ public class PbBit32 implements PbValue {
     @Override
     public int write(byte[] data, int offset) {
         ByteBuffer bf = localBF.get();
-        bf.clear();
         FloatBuffer fb = bf.asFloatBuffer();
         fb.put(this.value);
         bf.get(data, offset, SIZE);
