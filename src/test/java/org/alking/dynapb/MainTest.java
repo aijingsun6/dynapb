@@ -11,11 +11,11 @@ public class MainTest {
 
     @Test
     public void floatTest(){
-        DynaPb.Foo.Builder builder = DynaPb.Foo.newBuilder();
+        DynaPbTest.Foo.Builder builder = DynaPbTest.Foo.newBuilder();
         float origin = 1.0f;
         builder.setVarFloat(origin);
 
-        DynaPb.Foo foo = builder.build();
+        DynaPbTest.Foo foo = builder.build();
         byte[]  bytes = foo.toByteArray();
         System.out.println(bytes.length);
         ByteBuffer bb = ByteBuffer.wrap(bytes,1,4);
@@ -26,10 +26,10 @@ public class MainTest {
 
     @Test
     public void doubleTest(){
-        DynaPb.Foo.Builder builder = DynaPb.Foo.newBuilder();
+        DynaPbTest.Foo.Builder builder = DynaPbTest.Foo.newBuilder();
         double origin = 2.0d;
         builder.setVarDouble(origin);
-        DynaPb.Foo foo = builder.build();
+        DynaPbTest.Foo foo = builder.build();
         byte[]  bytes = foo.toByteArray();
         System.out.println(bytes.length);
         ByteBuffer bb = ByteBuffer.wrap(bytes,1,8);

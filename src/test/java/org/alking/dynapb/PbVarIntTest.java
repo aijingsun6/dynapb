@@ -30,10 +30,10 @@ public class PbVarIntTest {
         List<Long> list = this.genList();
 
         for (long v : list){
-            DynaPb.Foo.Builder builder = DynaPb.Foo.newBuilder();
+            DynaPbTest.Foo.Builder builder = DynaPbTest.Foo.newBuilder();
             builder.setVarInt(v);
 
-            DynaPb.Foo foo = builder.build();
+            DynaPbTest.Foo foo = builder.build();
             byte[]  bytes = foo.toByteArray();
             PbVarInt pbVarInt = new PbVarInt();
             pbVarInt.read(bytes, 1, 0);
@@ -46,10 +46,10 @@ public class PbVarIntTest {
     public void writeTest(){
         List<Long> list = this.genList();
         for (long v : list){
-            DynaPb.Foo.Builder builder = DynaPb.Foo.newBuilder();
+            DynaPbTest.Foo.Builder builder = DynaPbTest.Foo.newBuilder();
             builder.setVarInt(v);
 
-            DynaPb.Foo foo = builder.build();
+            DynaPbTest.Foo foo = builder.build();
             byte[] bytes = foo.toByteArray();
             byte[] bytes2 = new byte[bytes.length];
             bytes2[0] = bytes[0];
@@ -63,15 +63,15 @@ public class PbVarIntTest {
 
     @Test
     public void boolReadTest(){
-        DynaPb.Foo.Builder builder = DynaPb.Foo.newBuilder();
+        DynaPbTest.Foo.Builder builder = DynaPbTest.Foo.newBuilder();
         builder.setVarBool(true);
-        DynaPb.Foo foo = builder.build();
+        DynaPbTest.Foo foo = builder.build();
         byte[]  bytes = foo.toByteArray();
         PbVarInt pbVarInt = new PbVarInt();
         pbVarInt.read(bytes, 1, 0);
         Assert.assertTrue(pbVarInt.boolValue());
 
-        builder = DynaPb.Foo.newBuilder();
+        builder = DynaPbTest.Foo.newBuilder();
         builder.setVarBool(false);
         foo = builder.build();
         bytes = foo.toByteArray();
@@ -82,9 +82,9 @@ public class PbVarIntTest {
 
     @Test
     public void boolWriteTest(){
-        DynaPb.Foo.Builder builder = DynaPb.Foo.newBuilder();
+        DynaPbTest.Foo.Builder builder = DynaPbTest.Foo.newBuilder();
         builder.setVarBool(true);
-        DynaPb.Foo foo = builder.build();
+        DynaPbTest.Foo foo = builder.build();
         byte[] bytes = foo.toByteArray();
         byte[] bytes2 = new byte[bytes.length];
         bytes2[0] = bytes[0];
@@ -92,7 +92,7 @@ public class PbVarIntTest {
         pbVarInt.write(bytes2, 1);
         Assert.assertArrayEquals( bytes, bytes2);
 
-        builder = DynaPb.Foo.newBuilder();
+        builder = DynaPbTest.Foo.newBuilder();
         builder.setVarBool(false);
         foo = builder.build();
         bytes = foo.toByteArray();

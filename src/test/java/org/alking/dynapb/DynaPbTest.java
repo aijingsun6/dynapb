@@ -3,8 +3,8 @@
 
 package org.alking.dynapb;
 
-public final class DynaPb {
-  private DynaPb() {}
+public final class DynaPbTest {
+  private DynaPbTest() {}
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
@@ -129,14 +129,14 @@ public final class DynaPb {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.alking.dynapb.DynaPb.internal_static_Bar_descriptor;
+      return DynaPbTest.internal_static_Bar_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.alking.dynapb.DynaPb.internal_static_Bar_fieldAccessorTable
+      return DynaPbTest.internal_static_Bar_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              org.alking.dynapb.DynaPb.Bar.class, org.alking.dynapb.DynaPb.Bar.Builder.class);
+              DynaPbTest.Bar.class, DynaPbTest.Bar.Builder.class);
     }
 
     public static com.google.protobuf.Parser<Bar> PARSER =
@@ -253,53 +253,53 @@ public final class DynaPb {
       return super.writeReplace();
     }
 
-    public static org.alking.dynapb.DynaPb.Bar parseFrom(
+    public static DynaPbTest.Bar parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.alking.dynapb.DynaPb.Bar parseFrom(
+    public static DynaPbTest.Bar parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.alking.dynapb.DynaPb.Bar parseFrom(byte[] data)
+    public static DynaPbTest.Bar parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.alking.dynapb.DynaPb.Bar parseFrom(
+    public static DynaPbTest.Bar parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.alking.dynapb.DynaPb.Bar parseFrom(java.io.InputStream input)
+    public static DynaPbTest.Bar parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static org.alking.dynapb.DynaPb.Bar parseFrom(
+    public static DynaPbTest.Bar parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static org.alking.dynapb.DynaPb.Bar parseDelimitedFrom(java.io.InputStream input)
+    public static DynaPbTest.Bar parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static org.alking.dynapb.DynaPb.Bar parseDelimitedFrom(
+    public static DynaPbTest.Bar parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static org.alking.dynapb.DynaPb.Bar parseFrom(
+    public static DynaPbTest.Bar parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static org.alking.dynapb.DynaPb.Bar parseFrom(
+    public static DynaPbTest.Bar parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -308,7 +308,7 @@ public final class DynaPb {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.alking.dynapb.DynaPb.Bar prototype) {
+    public static Builder newBuilder(DynaPbTest.Bar prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -325,20 +325,20 @@ public final class DynaPb {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:Bar)
-        org.alking.dynapb.DynaPb.BarOrBuilder {
+        DynaPbTest.BarOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return org.alking.dynapb.DynaPb.internal_static_Bar_descriptor;
+        return DynaPbTest.internal_static_Bar_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return org.alking.dynapb.DynaPb.internal_static_Bar_fieldAccessorTable
+        return DynaPbTest.internal_static_Bar_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                org.alking.dynapb.DynaPb.Bar.class, org.alking.dynapb.DynaPb.Bar.Builder.class);
+                DynaPbTest.Bar.class, DynaPbTest.Bar.Builder.class);
       }
 
-      // Construct using org.alking.dynapb.DynaPb.Bar.newBuilder()
+      // Construct using org.alking.dynapb.DynaPbTest.Bar.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -371,23 +371,23 @@ public final class DynaPb {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return org.alking.dynapb.DynaPb.internal_static_Bar_descriptor;
+        return DynaPbTest.internal_static_Bar_descriptor;
       }
 
-      public org.alking.dynapb.DynaPb.Bar getDefaultInstanceForType() {
-        return org.alking.dynapb.DynaPb.Bar.getDefaultInstance();
+      public DynaPbTest.Bar getDefaultInstanceForType() {
+        return DynaPbTest.Bar.getDefaultInstance();
       }
 
-      public org.alking.dynapb.DynaPb.Bar build() {
-        org.alking.dynapb.DynaPb.Bar result = buildPartial();
+      public DynaPbTest.Bar build() {
+        DynaPbTest.Bar result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public org.alking.dynapb.DynaPb.Bar buildPartial() {
-        org.alking.dynapb.DynaPb.Bar result = new org.alking.dynapb.DynaPb.Bar(this);
+      public DynaPbTest.Bar buildPartial() {
+        DynaPbTest.Bar result = new DynaPbTest.Bar(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -405,16 +405,16 @@ public final class DynaPb {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.alking.dynapb.DynaPb.Bar) {
-          return mergeFrom((org.alking.dynapb.DynaPb.Bar)other);
+        if (other instanceof DynaPbTest.Bar) {
+          return mergeFrom((DynaPbTest.Bar)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(org.alking.dynapb.DynaPb.Bar other) {
-        if (other == org.alking.dynapb.DynaPb.Bar.getDefaultInstance()) return this;
+      public Builder mergeFrom(DynaPbTest.Bar other) {
+        if (other == DynaPbTest.Bar.getDefaultInstance()) return this;
         if (other.hasId()) {
           setId(other.getId());
         }
@@ -444,11 +444,11 @@ public final class DynaPb {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        org.alking.dynapb.DynaPb.Bar parsedMessage = null;
+        DynaPbTest.Bar parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (org.alking.dynapb.DynaPb.Bar) e.getUnfinishedMessage();
+          parsedMessage = (DynaPbTest.Bar) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -629,11 +629,11 @@ public final class DynaPb {
     /**
      * <code>optional .Bar bar = 6;</code>
      */
-    org.alking.dynapb.DynaPb.Bar getBar();
+    DynaPbTest.Bar getBar();
     /**
      * <code>optional .Bar bar = 6;</code>
      */
-    org.alking.dynapb.DynaPb.BarOrBuilder getBarOrBuilder();
+    DynaPbTest.BarOrBuilder getBarOrBuilder();
   }
   /**
    * Protobuf type {@code Foo}
@@ -714,11 +714,11 @@ public final class DynaPb {
               break;
             }
             case 50: {
-              org.alking.dynapb.DynaPb.Bar.Builder subBuilder = null;
+              DynaPbTest.Bar.Builder subBuilder = null;
               if (((bitField0_ & 0x00000020) == 0x00000020)) {
                 subBuilder = bar_.toBuilder();
               }
-              bar_ = input.readMessage(org.alking.dynapb.DynaPb.Bar.PARSER, extensionRegistry);
+              bar_ = input.readMessage(DynaPbTest.Bar.PARSER, extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(bar_);
                 bar_ = subBuilder.buildPartial();
@@ -740,14 +740,14 @@ public final class DynaPb {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.alking.dynapb.DynaPb.internal_static_Foo_descriptor;
+      return DynaPbTest.internal_static_Foo_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.alking.dynapb.DynaPb.internal_static_Foo_fieldAccessorTable
+      return DynaPbTest.internal_static_Foo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              org.alking.dynapb.DynaPb.Foo.class, org.alking.dynapb.DynaPb.Foo.Builder.class);
+              DynaPbTest.Foo.class, DynaPbTest.Foo.Builder.class);
     }
 
     public static com.google.protobuf.Parser<Foo> PARSER =
@@ -869,7 +869,7 @@ public final class DynaPb {
     }
 
     public static final int BAR_FIELD_NUMBER = 6;
-    private org.alking.dynapb.DynaPb.Bar bar_;
+    private DynaPbTest.Bar bar_;
     /**
      * <code>optional .Bar bar = 6;</code>
      */
@@ -879,13 +879,13 @@ public final class DynaPb {
     /**
      * <code>optional .Bar bar = 6;</code>
      */
-    public org.alking.dynapb.DynaPb.Bar getBar() {
+    public DynaPbTest.Bar getBar() {
       return bar_;
     }
     /**
      * <code>optional .Bar bar = 6;</code>
      */
-    public org.alking.dynapb.DynaPb.BarOrBuilder getBarOrBuilder() {
+    public DynaPbTest.BarOrBuilder getBarOrBuilder() {
       return bar_;
     }
 
@@ -895,7 +895,7 @@ public final class DynaPb {
       varDouble_ = 0D;
       varBool_ = false;
       varString_ = "";
-      bar_ = org.alking.dynapb.DynaPb.Bar.getDefaultInstance();
+      bar_ = DynaPbTest.Bar.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -979,53 +979,53 @@ public final class DynaPb {
       return super.writeReplace();
     }
 
-    public static org.alking.dynapb.DynaPb.Foo parseFrom(
+    public static DynaPbTest.Foo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.alking.dynapb.DynaPb.Foo parseFrom(
+    public static DynaPbTest.Foo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.alking.dynapb.DynaPb.Foo parseFrom(byte[] data)
+    public static DynaPbTest.Foo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.alking.dynapb.DynaPb.Foo parseFrom(
+    public static DynaPbTest.Foo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.alking.dynapb.DynaPb.Foo parseFrom(java.io.InputStream input)
+    public static DynaPbTest.Foo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static org.alking.dynapb.DynaPb.Foo parseFrom(
+    public static DynaPbTest.Foo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static org.alking.dynapb.DynaPb.Foo parseDelimitedFrom(java.io.InputStream input)
+    public static DynaPbTest.Foo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static org.alking.dynapb.DynaPb.Foo parseDelimitedFrom(
+    public static DynaPbTest.Foo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static org.alking.dynapb.DynaPb.Foo parseFrom(
+    public static DynaPbTest.Foo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static org.alking.dynapb.DynaPb.Foo parseFrom(
+    public static DynaPbTest.Foo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1034,7 +1034,7 @@ public final class DynaPb {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.alking.dynapb.DynaPb.Foo prototype) {
+    public static Builder newBuilder(DynaPbTest.Foo prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -1051,20 +1051,20 @@ public final class DynaPb {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:Foo)
-        org.alking.dynapb.DynaPb.FooOrBuilder {
+        DynaPbTest.FooOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return org.alking.dynapb.DynaPb.internal_static_Foo_descriptor;
+        return DynaPbTest.internal_static_Foo_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return org.alking.dynapb.DynaPb.internal_static_Foo_fieldAccessorTable
+        return DynaPbTest.internal_static_Foo_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                org.alking.dynapb.DynaPb.Foo.class, org.alking.dynapb.DynaPb.Foo.Builder.class);
+                DynaPbTest.Foo.class, DynaPbTest.Foo.Builder.class);
       }
 
-      // Construct using org.alking.dynapb.DynaPb.Foo.newBuilder()
+      // Construct using org.alking.dynapb.DynaPbTest.Foo.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1096,7 +1096,7 @@ public final class DynaPb {
         varString_ = "";
         bitField0_ = (bitField0_ & ~0x00000010);
         if (barBuilder_ == null) {
-          bar_ = org.alking.dynapb.DynaPb.Bar.getDefaultInstance();
+          bar_ = DynaPbTest.Bar.getDefaultInstance();
         } else {
           barBuilder_.clear();
         }
@@ -1110,23 +1110,23 @@ public final class DynaPb {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return org.alking.dynapb.DynaPb.internal_static_Foo_descriptor;
+        return DynaPbTest.internal_static_Foo_descriptor;
       }
 
-      public org.alking.dynapb.DynaPb.Foo getDefaultInstanceForType() {
-        return org.alking.dynapb.DynaPb.Foo.getDefaultInstance();
+      public DynaPbTest.Foo getDefaultInstanceForType() {
+        return DynaPbTest.Foo.getDefaultInstance();
       }
 
-      public org.alking.dynapb.DynaPb.Foo build() {
-        org.alking.dynapb.DynaPb.Foo result = buildPartial();
+      public DynaPbTest.Foo build() {
+        DynaPbTest.Foo result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public org.alking.dynapb.DynaPb.Foo buildPartial() {
-        org.alking.dynapb.DynaPb.Foo result = new org.alking.dynapb.DynaPb.Foo(this);
+      public DynaPbTest.Foo buildPartial() {
+        DynaPbTest.Foo result = new DynaPbTest.Foo(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -1163,16 +1163,16 @@ public final class DynaPb {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.alking.dynapb.DynaPb.Foo) {
-          return mergeFrom((org.alking.dynapb.DynaPb.Foo)other);
+        if (other instanceof DynaPbTest.Foo) {
+          return mergeFrom((DynaPbTest.Foo)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(org.alking.dynapb.DynaPb.Foo other) {
-        if (other == org.alking.dynapb.DynaPb.Foo.getDefaultInstance()) return this;
+      public Builder mergeFrom(DynaPbTest.Foo other) {
+        if (other == DynaPbTest.Foo.getDefaultInstance()) return this;
         if (other.hasVarInt()) {
           setVarInt(other.getVarInt());
         }
@@ -1211,11 +1211,11 @@ public final class DynaPb {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        org.alking.dynapb.DynaPb.Foo parsedMessage = null;
+        DynaPbTest.Foo parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (org.alking.dynapb.DynaPb.Foo) e.getUnfinishedMessage();
+          parsedMessage = (DynaPbTest.Foo) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -1430,9 +1430,9 @@ public final class DynaPb {
         return this;
       }
 
-      private org.alking.dynapb.DynaPb.Bar bar_ = org.alking.dynapb.DynaPb.Bar.getDefaultInstance();
+      private DynaPbTest.Bar bar_ = DynaPbTest.Bar.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          org.alking.dynapb.DynaPb.Bar, org.alking.dynapb.DynaPb.Bar.Builder, org.alking.dynapb.DynaPb.BarOrBuilder> barBuilder_;
+          DynaPbTest.Bar, DynaPbTest.Bar.Builder, DynaPbTest.BarOrBuilder> barBuilder_;
       /**
        * <code>optional .Bar bar = 6;</code>
        */
@@ -1442,7 +1442,7 @@ public final class DynaPb {
       /**
        * <code>optional .Bar bar = 6;</code>
        */
-      public org.alking.dynapb.DynaPb.Bar getBar() {
+      public DynaPbTest.Bar getBar() {
         if (barBuilder_ == null) {
           return bar_;
         } else {
@@ -1452,7 +1452,7 @@ public final class DynaPb {
       /**
        * <code>optional .Bar bar = 6;</code>
        */
-      public Builder setBar(org.alking.dynapb.DynaPb.Bar value) {
+      public Builder setBar(DynaPbTest.Bar value) {
         if (barBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1469,7 +1469,7 @@ public final class DynaPb {
        * <code>optional .Bar bar = 6;</code>
        */
       public Builder setBar(
-          org.alking.dynapb.DynaPb.Bar.Builder builderForValue) {
+          DynaPbTest.Bar.Builder builderForValue) {
         if (barBuilder_ == null) {
           bar_ = builderForValue.build();
           onChanged();
@@ -1482,12 +1482,12 @@ public final class DynaPb {
       /**
        * <code>optional .Bar bar = 6;</code>
        */
-      public Builder mergeBar(org.alking.dynapb.DynaPb.Bar value) {
+      public Builder mergeBar(DynaPbTest.Bar value) {
         if (barBuilder_ == null) {
           if (((bitField0_ & 0x00000020) == 0x00000020) &&
-              bar_ != org.alking.dynapb.DynaPb.Bar.getDefaultInstance()) {
+              bar_ != DynaPbTest.Bar.getDefaultInstance()) {
             bar_ =
-              org.alking.dynapb.DynaPb.Bar.newBuilder(bar_).mergeFrom(value).buildPartial();
+              DynaPbTest.Bar.newBuilder(bar_).mergeFrom(value).buildPartial();
           } else {
             bar_ = value;
           }
@@ -1503,7 +1503,7 @@ public final class DynaPb {
        */
       public Builder clearBar() {
         if (barBuilder_ == null) {
-          bar_ = org.alking.dynapb.DynaPb.Bar.getDefaultInstance();
+          bar_ = DynaPbTest.Bar.getDefaultInstance();
           onChanged();
         } else {
           barBuilder_.clear();
@@ -1514,7 +1514,7 @@ public final class DynaPb {
       /**
        * <code>optional .Bar bar = 6;</code>
        */
-      public org.alking.dynapb.DynaPb.Bar.Builder getBarBuilder() {
+      public DynaPbTest.Bar.Builder getBarBuilder() {
         bitField0_ |= 0x00000020;
         onChanged();
         return getBarFieldBuilder().getBuilder();
@@ -1522,7 +1522,7 @@ public final class DynaPb {
       /**
        * <code>optional .Bar bar = 6;</code>
        */
-      public org.alking.dynapb.DynaPb.BarOrBuilder getBarOrBuilder() {
+      public DynaPbTest.BarOrBuilder getBarOrBuilder() {
         if (barBuilder_ != null) {
           return barBuilder_.getMessageOrBuilder();
         } else {
@@ -1533,11 +1533,11 @@ public final class DynaPb {
        * <code>optional .Bar bar = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.alking.dynapb.DynaPb.Bar, org.alking.dynapb.DynaPb.Bar.Builder, org.alking.dynapb.DynaPb.BarOrBuilder> 
+          DynaPbTest.Bar, DynaPbTest.Bar.Builder, DynaPbTest.BarOrBuilder>
           getBarFieldBuilder() {
         if (barBuilder_ == null) {
           barBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              org.alking.dynapb.DynaPb.Bar, org.alking.dynapb.DynaPb.Bar.Builder, org.alking.dynapb.DynaPb.BarOrBuilder>(
+              DynaPbTest.Bar, DynaPbTest.Bar.Builder, DynaPbTest.BarOrBuilder>(
                   getBar(),
                   getParentForChildren(),
                   isClean());
@@ -1580,8 +1580,8 @@ public final class DynaPb {
       "nt_list\030\002 \003(\005\"v\n\003Foo\022\017\n\007var_int\030\001 \001(\003\022\021\n" +
       "\tvar_float\030\002 \001(\002\022\022\n\nvar_double\030\003 \001(\001\022\020\n\010" +
       "var_bool\030\004 \001(\010\022\022\n\nvar_string\030\005 \001(\t\022\021\n\003ba" +
-      "r\030\006 \001(\0132\004.BarB\033\n\021org.alking.dynapbB\006Dyna" +
-      "Pb"
+      "r\030\006 \001(\0132\004.BarB\037\n\021org.alking.dynapbB\nDyna" +
+      "PbTest"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

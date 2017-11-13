@@ -8,10 +8,10 @@ public class PbBytesTest {
     @Test
     public void readTest(){
         String origin = "i am ok";
-        DynaPb.Foo.Builder builder = DynaPb.Foo.newBuilder();
+        DynaPbTest.Foo.Builder builder = DynaPbTest.Foo.newBuilder();
         builder.setVarString(origin);
 
-        DynaPb.Foo foo = builder.build();
+        DynaPbTest.Foo foo = builder.build();
         byte[] bytes = foo.toByteArray();
         PbBytes pb = new PbBytes();
         pb.read(bytes,2, bytes.length-2);
@@ -22,10 +22,10 @@ public class PbBytesTest {
     @Test
     public void writeTest(){
         String origin = "i am ok";
-        DynaPb.Foo.Builder builder = DynaPb.Foo.newBuilder();
+        DynaPbTest.Foo.Builder builder = DynaPbTest.Foo.newBuilder();
         builder.setVarString(origin);
 
-        DynaPb.Foo foo = builder.build();
+        DynaPbTest.Foo foo = builder.build();
         byte[] bytes = foo.toByteArray();
         byte[] bytes2 = new byte[bytes.length];
         // 0 : field num and wire type

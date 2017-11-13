@@ -15,13 +15,13 @@ public class PbMessageTest {
         double dv = 3.0d;
         boolean bv = true;
         String sv = "i am ok";
-        DynaPb.Foo.Builder builder = DynaPb.Foo.newBuilder();
+        DynaPbTest.Foo.Builder builder = DynaPbTest.Foo.newBuilder();
         builder.setVarInt(lv);
         builder.setVarFloat(fv);
         builder.setVarDouble(dv);
         builder.setVarBool(bv);
         builder.setVarString(sv);
-        DynaPb.Foo foo = builder.build();
+        DynaPbTest.Foo foo = builder.build();
         byte[] data = foo.toByteArray();
 
         PbMessage msg = new PbMessage();
@@ -50,7 +50,7 @@ public class PbMessageTest {
         int size = msg.size();
         byte[] data = new byte[size];
         msg.write(data, 0);
-        DynaPb.Foo foo = DynaPb.Foo.parseFrom(data);
+        DynaPbTest.Foo foo = DynaPbTest.Foo.parseFrom(data);
         Assert.assertEquals(lv, foo.getVarInt());
         Assert.assertEquals(fv, foo.getVarFloat(), 0.000001f);
         Assert.assertEquals(dv, foo.getVarDouble(), 0.000001f);

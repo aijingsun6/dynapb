@@ -1,7 +1,7 @@
 syntax = "proto2";
 
 option java_package = "org.alking.dynapb";
-option java_outer_classname = "DynaPb";
+option java_outer_classname = "DynaPbTest";
 
 message Bar {
     required int32 id = 1;

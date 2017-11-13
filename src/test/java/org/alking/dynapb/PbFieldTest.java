@@ -9,9 +9,9 @@ public class PbFieldTest {
     @Test
     public void readIntFieldTest(){
         long origin = 100;
-        DynaPb.Foo.Builder builder = DynaPb.Foo.newBuilder();
+        DynaPbTest.Foo.Builder builder = DynaPbTest.Foo.newBuilder();
         builder.setVarInt(origin);
-        DynaPb.Foo foo = builder.build();
+        DynaPbTest.Foo foo = builder.build();
         byte[] data = foo.toByteArray();
 
         PbField field = new PbField();
@@ -31,7 +31,7 @@ public class PbFieldTest {
         int size = field.size();
         byte[] data = new byte[size];
         field.write(data,0);
-        DynaPb.Foo foo = DynaPb.Foo.parseFrom(data);
+        DynaPbTest.Foo foo = DynaPbTest.Foo.parseFrom(data);
         Assert.assertEquals(origin, foo.getVarInt());
     }
 
