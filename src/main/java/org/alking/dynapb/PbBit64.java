@@ -11,7 +11,7 @@ import java.nio.ByteOrder;
 import java.nio.DoubleBuffer;
 import java.nio.FloatBuffer;
 
-public class PbBit64 implements PbValue {
+final class PbBit64 implements PbValue {
 
     private static final int SIZE = 8;
 

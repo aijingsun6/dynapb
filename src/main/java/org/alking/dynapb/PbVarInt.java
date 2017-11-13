@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 
-class PbVarInt implements PbValue {
+final class PbVarInt implements PbValue {
 
     private static final int BIT_7 = 1 << 7;
 

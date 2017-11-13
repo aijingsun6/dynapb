@@ -8,7 +8,7 @@ import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 
-public class PbBytes implements PbValue {
+final class PbBytes implements PbValue {
 
     private byte[] bytes;
 

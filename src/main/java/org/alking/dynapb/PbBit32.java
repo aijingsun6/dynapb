@@ -10,7 +10,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
-public class PbBit32 implements PbValue {
+final class PbBit32 implements PbValue {
 
     private static final int SIZE = 4;
 
