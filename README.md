@@ -4,3 +4,24 @@
 2.  使用```Annotation``` 直接进行编码与解析
 3.  性能不那么糟糕
 
+### 使用方法
+##### 序列化(encode)
+```
+......
+Object src = ...
+byte[] data = DynaPb.encode(src);
+......
+```
+
+##### 反序列化(decode)
+
+```
+......
+class Foo {
+
+}
+byte[] data = ...
+Foo foo = DynaPb.decode(data, 0, data.length, Foo.class);
+......
+
+```
