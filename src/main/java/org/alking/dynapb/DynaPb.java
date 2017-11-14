@@ -35,19 +35,6 @@ import java.util.Map;
  */
 public class DynaPb {
 
-    /**
-     * A constant holding the minimum value a {@code short} can
-     * have, 2<sup>15</sup>.
-     */
-    public static final int THREAD_LOCAL_CACHE_MAX = 1 << 15;
-
-    private static final ThreadLocal<byte[]> cache = new ThreadLocal<byte[]>(){
-        @Override
-        protected byte[] initialValue() {
-            return new byte[THREAD_LOCAL_CACHE_MAX];
-        }
-    };
-
     public static <T> T decode(final byte[] data, final int offset, final int size, final Class<T> clazz) throws IllegalAccessException, InstantiationException {
         T t = clazz.newInstance();
         PbMessage msg = new PbMessage(size);
@@ -391,6 +378,7 @@ public class DynaPb {
         encodeObj(msg, c, field.get(src));
     }
 
+    @SuppressWarnings("unchecked")
     private static void encodeList(PbMessage msg, Field field, Object src) throws IllegalAccessException {
         PbSerializedName anno = field.getAnnotation(PbSerializedName.class);
         if (anno == null) {
