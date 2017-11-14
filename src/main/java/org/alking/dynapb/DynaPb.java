@@ -101,10 +101,6 @@ public class DynaPb {
      * <li>{@link List}&lt;CustomClass&gt; </li>
      * </ul>
      *
-     * @param value
-     * @param field
-     * @param t
-     * @param <T>
      * @throws IllegalAccessException
      */
     @SuppressWarnings("unchecked")

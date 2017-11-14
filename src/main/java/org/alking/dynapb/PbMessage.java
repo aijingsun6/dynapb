@@ -8,7 +8,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * for java class
+ * <pre>
+ *     read data:
+ *     =============================
+ *     example 1:
+ *     byte[] data = ...
+ *     int offset = ...
+ *     int size = ...
+ *     PbMessage msg = new PbMessage(size);
+ *     msg.read(data, offset);
+ *     ......
+ *     =============================
+ *     example 2:
+ *     InputStream is = ...
+ *     PbMessage msg = new PbMessage(0);
+ *     msg.read(is);
+ *     ......
+ *     =============================
+ *     example 3:
+ *     ByteBuffet buffet = ...
+ *     PbMessage msg = new PbMessage(0);
+ *     msg.read(buffer);
+ *     ......
+ *     =============================
+ *
+ *
+ *
+ * </pre>
+ *
+ * <pre>
+ *     write data:
+ *
+ *     PbMessage msg = new PbMessage(0);
+ *     PbField f1 = ...
+ *     msg.addField(f1);
+ *     PbField f2 = ...
+ *     msg.addField(f2);
+ *     =============================
+ *     example 1
+ *     byte[] data = ...
+ *     int offset = ...
+ *     msg.write(data,offset);
+ *     =============================
+ *     example 2:
+ *     OutputStream os = ...
+ *     msg.write(os);
+ *     =============================
+ *     example 3:
+ *     ByteBuffer buffer = ...
+ *     msg.write(buffer);
+ *     =============================
+ *
+ * </pre>
  */
 final class PbMessage implements PbRW {
 
@@ -54,7 +105,7 @@ final class PbMessage implements PbRW {
 
     @Override
     public int size() {
-       return this.size;
+        return this.size;
     }
 
     @Override
@@ -113,6 +164,7 @@ final class PbMessage implements PbRW {
             this.fields.add(f);
             sum += read;
         }
+        this.size = sum;
         return sum;
     }
 
@@ -126,6 +178,7 @@ final class PbMessage implements PbRW {
             this.fields.add(f);
             sum += read;
         }
+        this.size = sum;
         return sum;
     }
 }
