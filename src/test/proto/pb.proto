@@ -4,8 +4,11 @@ option java_package = "org.alking.dynapb";
 option java_outer_classname = "FooBar";
 
 message Bar {
-    required int32 id = 1;
-    repeated int32 int_list = 2;
+    repeated int64 lv = 1;
+    repeated float fv = 2;
+    repeated double dv = 3;
+    repeated bool bv = 4;
+    repeated string sv = 5;
 }
 message Foo {
 	optional int64 var_int = 1;
@@ -13,5 +16,5 @@ message Foo {
 	optional double var_double = 3;
 	optional bool var_bool = 4;
 	optional string var_string = 5;
-	optional Bar bar = 6;
 }
+

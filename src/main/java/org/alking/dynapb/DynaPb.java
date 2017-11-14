@@ -1,6 +1,5 @@
 package org.alking.dynapb;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -8,6 +7,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,7 +92,6 @@ public class DynaPb {
         Field[] fields = clazz.getDeclaredFields();
         checkDuplicateFields(fields);
         for (Field f : fields) {
-            String name = f.getName();
             PbSerializedName anno = f.getAnnotation(PbSerializedName.class);
             if (anno == null) {
                 continue;
@@ -126,50 +125,82 @@ public class DynaPb {
 
         // List<Boolean>
         if (Boolean.class.equals(at)) {
+            if(obj == null){
+                obj = new ArrayList<Boolean>();
+            }
             List<Boolean> bl = (List<Boolean>) obj;
             bl.add(value.boolValue());
+            field.set(t, obj);
             return;
         }
 
         if (Integer.class.equals(at)) {
-            List<Integer> il = (List<Integer>) field.get(t);
+            if(obj == null){
+                obj = new ArrayList<Integer>();
+            }
+            List<Integer> il = (List<Integer>) obj;
             il.add(value.intValue());
+            field.set(t, obj);
             return;
         }
 
         if (Long.class.equals(at)) {
+            if(obj == null){
+                obj = new ArrayList<Long>();
+            }
             List<Long> ll = (List<Long>) obj;
             ll.add(value.longValue());
+            field.set(t, obj);
             return;
         }
         if (Float.class.equals(at)) {
+            if(obj == null){
+                obj = new ArrayList<Float>();
+            }
             List<Float> fl = (List<Float>) obj;
             fl.add(value.floatValue());
+            field.set(t, obj);
             return;
         }
         if (Double.class.equals(at)) {
+            if(obj == null){
+                obj = new ArrayList<Double>();
+            }
             List<Double> dl = (List<Double>) obj;
             dl.add(value.doubleValue());
+            field.set(t, obj);
             return;
         }
         if (String.class.equals(at)) {
+            if(obj == null){
+                obj = new ArrayList<String>();
+            }
             List<String> sl = (List<String>) obj;
             sl.add(value.stringValue());
+            field.set(t, obj);
             return;
         }
         // List<byte[]>
         if (byte[].class.equals(at)) {
+            if(obj == null){
+                obj = new ArrayList<byte[]>();
+            }
             List<byte[]> bsl = (List<byte[]>) obj;
             byte[] data = new byte[value.size()];
             value.write(data, 0);
             bsl.add(data);
+            field.set(t, obj);
             return;
         }
         // List<CustomClass>
+        if(obj == null){
+            obj = new ArrayList<>();
+        }
         Class<?> c = (Class<?>) at;
         List list = (List) obj;
         Object co = decodeObj(value, c);
         list.add(co);
+        field.set(t, obj);
     }
 
     private static <T> T decodeObj(PbValue value, Class<T> clazz) throws IllegalAccessException, InstantiationException {
@@ -258,8 +289,9 @@ public class DynaPb {
             throw new PbException(String.format("field number %d actual list, but none", pbFields.get(0).getFieldNum()));
         }
 
+
         for (PbField f : pbFields) {
-            decodeField(f, field, t);
+            decodeList((PbValue) f.getValue(), field, t);
         }
 
     }

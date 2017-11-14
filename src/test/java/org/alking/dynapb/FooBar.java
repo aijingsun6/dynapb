@@ -13,26 +13,75 @@ public final class FooBar {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required int32 id = 1;</code>
+     * <code>repeated int64 lv = 1;</code>
      */
-    boolean hasId();
+    java.util.List<java.lang.Long> getLvList();
     /**
-     * <code>required int32 id = 1;</code>
+     * <code>repeated int64 lv = 1;</code>
      */
-    int getId();
+    int getLvCount();
+    /**
+     * <code>repeated int64 lv = 1;</code>
+     */
+    long getLv(int index);
 
     /**
-     * <code>repeated int32 int_list = 2;</code>
+     * <code>repeated float fv = 2;</code>
      */
-    java.util.List<java.lang.Integer> getIntListList();
+    java.util.List<java.lang.Float> getFvList();
     /**
-     * <code>repeated int32 int_list = 2;</code>
+     * <code>repeated float fv = 2;</code>
      */
-    int getIntListCount();
+    int getFvCount();
     /**
-     * <code>repeated int32 int_list = 2;</code>
+     * <code>repeated float fv = 2;</code>
      */
-    int getIntList(int index);
+    float getFv(int index);
+
+    /**
+     * <code>repeated double dv = 3;</code>
+     */
+    java.util.List<java.lang.Double> getDvList();
+    /**
+     * <code>repeated double dv = 3;</code>
+     */
+    int getDvCount();
+    /**
+     * <code>repeated double dv = 3;</code>
+     */
+    double getDv(int index);
+
+    /**
+     * <code>repeated bool bv = 4;</code>
+     */
+    java.util.List<java.lang.Boolean> getBvList();
+    /**
+     * <code>repeated bool bv = 4;</code>
+     */
+    int getBvCount();
+    /**
+     * <code>repeated bool bv = 4;</code>
+     */
+    boolean getBv(int index);
+
+    /**
+     * <code>repeated string sv = 5;</code>
+     */
+    com.google.protobuf.ProtocolStringList
+        getSvList();
+    /**
+     * <code>repeated string sv = 5;</code>
+     */
+    int getSvCount();
+    /**
+     * <code>repeated string sv = 5;</code>
+     */
+    java.lang.String getSv(int index);
+    /**
+     * <code>repeated string sv = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getSvBytes(int index);
   }
   /**
    * Protobuf type {@code Bar}
@@ -87,29 +136,96 @@ public final class FooBar {
               break;
             }
             case 8: {
-              bitField0_ |= 0x00000001;
-              id_ = input.readInt32();
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                lv_ = new java.util.ArrayList<java.lang.Long>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              lv_.add(input.readInt64());
               break;
             }
-            case 16: {
+            case 10: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001) && input.getBytesUntilLimit() > 0) {
+                lv_ = new java.util.ArrayList<java.lang.Long>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                lv_.add(input.readInt64());
+              }
+              input.popLimit(limit);
+              break;
+            }
+            case 21: {
               if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                intList_ = new java.util.ArrayList<java.lang.Integer>();
+                fv_ = new java.util.ArrayList<java.lang.Float>();
                 mutable_bitField0_ |= 0x00000002;
               }
-              intList_.add(input.readInt32());
+              fv_.add(input.readFloat());
               break;
             }
             case 18: {
               int length = input.readRawVarint32();
               int limit = input.pushLimit(length);
               if (!((mutable_bitField0_ & 0x00000002) == 0x00000002) && input.getBytesUntilLimit() > 0) {
-                intList_ = new java.util.ArrayList<java.lang.Integer>();
+                fv_ = new java.util.ArrayList<java.lang.Float>();
                 mutable_bitField0_ |= 0x00000002;
               }
               while (input.getBytesUntilLimit() > 0) {
-                intList_.add(input.readInt32());
+                fv_.add(input.readFloat());
               }
               input.popLimit(limit);
+              break;
+            }
+            case 25: {
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                dv_ = new java.util.ArrayList<java.lang.Double>();
+                mutable_bitField0_ |= 0x00000004;
+              }
+              dv_.add(input.readDouble());
+              break;
+            }
+            case 26: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004) && input.getBytesUntilLimit() > 0) {
+                dv_ = new java.util.ArrayList<java.lang.Double>();
+                mutable_bitField0_ |= 0x00000004;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                dv_.add(input.readDouble());
+              }
+              input.popLimit(limit);
+              break;
+            }
+            case 32: {
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                bv_ = new java.util.ArrayList<java.lang.Boolean>();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              bv_.add(input.readBool());
+              break;
+            }
+            case 34: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008) && input.getBytesUntilLimit() > 0) {
+                bv_ = new java.util.ArrayList<java.lang.Boolean>();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                bv_.add(input.readBool());
+              }
+              input.popLimit(limit);
+              break;
+            }
+            case 42: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+                sv_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000010;
+              }
+              sv_.add(bs);
               break;
             }
           }
@@ -120,8 +236,20 @@ public final class FooBar {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          lv_ = java.util.Collections.unmodifiableList(lv_);
+        }
         if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-          intList_ = java.util.Collections.unmodifiableList(intList_);
+          fv_ = java.util.Collections.unmodifiableList(fv_);
+        }
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+          dv_ = java.util.Collections.unmodifiableList(dv_);
+        }
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          bv_ = java.util.Collections.unmodifiableList(bv_);
+        }
+        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+          sv_ = sv_.getUnmodifiableView();
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -129,14 +257,14 @@ public final class FooBar {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return FooBar.internal_static_Bar_descriptor;
+      return org.alking.dynapb.FooBar.internal_static_Bar_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return FooBar.internal_static_Bar_fieldAccessorTable
+      return org.alking.dynapb.FooBar.internal_static_Bar_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              FooBar.Bar.class, FooBar.Bar.Builder.class);
+              org.alking.dynapb.FooBar.Bar.class, org.alking.dynapb.FooBar.Bar.Builder.class);
     }
 
     public static com.google.protobuf.Parser<Bar> PARSER =
@@ -154,47 +282,129 @@ public final class FooBar {
       return PARSER;
     }
 
-    private int bitField0_;
-    public static final int ID_FIELD_NUMBER = 1;
-    private int id_;
+    public static final int LV_FIELD_NUMBER = 1;
+    private java.util.List<java.lang.Long> lv_;
     /**
-     * <code>required int32 id = 1;</code>
+     * <code>repeated int64 lv = 1;</code>
      */
-    public boolean hasId() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+    public java.util.List<java.lang.Long>
+        getLvList() {
+      return lv_;
     }
     /**
-     * <code>required int32 id = 1;</code>
+     * <code>repeated int64 lv = 1;</code>
      */
-    public int getId() {
-      return id_;
+    public int getLvCount() {
+      return lv_.size();
+    }
+    /**
+     * <code>repeated int64 lv = 1;</code>
+     */
+    public long getLv(int index) {
+      return lv_.get(index);
     }
 
-    public static final int INT_LIST_FIELD_NUMBER = 2;
-    private java.util.List<java.lang.Integer> intList_;
+    public static final int FV_FIELD_NUMBER = 2;
+    private java.util.List<java.lang.Float> fv_;
     /**
-     * <code>repeated int32 int_list = 2;</code>
+     * <code>repeated float fv = 2;</code>
      */
-    public java.util.List<java.lang.Integer>
-        getIntListList() {
-      return intList_;
+    public java.util.List<java.lang.Float>
+        getFvList() {
+      return fv_;
     }
     /**
-     * <code>repeated int32 int_list = 2;</code>
+     * <code>repeated float fv = 2;</code>
      */
-    public int getIntListCount() {
-      return intList_.size();
+    public int getFvCount() {
+      return fv_.size();
     }
     /**
-     * <code>repeated int32 int_list = 2;</code>
+     * <code>repeated float fv = 2;</code>
      */
-    public int getIntList(int index) {
-      return intList_.get(index);
+    public float getFv(int index) {
+      return fv_.get(index);
+    }
+
+    public static final int DV_FIELD_NUMBER = 3;
+    private java.util.List<java.lang.Double> dv_;
+    /**
+     * <code>repeated double dv = 3;</code>
+     */
+    public java.util.List<java.lang.Double>
+        getDvList() {
+      return dv_;
+    }
+    /**
+     * <code>repeated double dv = 3;</code>
+     */
+    public int getDvCount() {
+      return dv_.size();
+    }
+    /**
+     * <code>repeated double dv = 3;</code>
+     */
+    public double getDv(int index) {
+      return dv_.get(index);
+    }
+
+    public static final int BV_FIELD_NUMBER = 4;
+    private java.util.List<java.lang.Boolean> bv_;
+    /**
+     * <code>repeated bool bv = 4;</code>
+     */
+    public java.util.List<java.lang.Boolean>
+        getBvList() {
+      return bv_;
+    }
+    /**
+     * <code>repeated bool bv = 4;</code>
+     */
+    public int getBvCount() {
+      return bv_.size();
+    }
+    /**
+     * <code>repeated bool bv = 4;</code>
+     */
+    public boolean getBv(int index) {
+      return bv_.get(index);
+    }
+
+    public static final int SV_FIELD_NUMBER = 5;
+    private com.google.protobuf.LazyStringList sv_;
+    /**
+     * <code>repeated string sv = 5;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getSvList() {
+      return sv_;
+    }
+    /**
+     * <code>repeated string sv = 5;</code>
+     */
+    public int getSvCount() {
+      return sv_.size();
+    }
+    /**
+     * <code>repeated string sv = 5;</code>
+     */
+    public java.lang.String getSv(int index) {
+      return sv_.get(index);
+    }
+    /**
+     * <code>repeated string sv = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSvBytes(int index) {
+      return sv_.getByteString(index);
     }
 
     private void initFields() {
-      id_ = 0;
-      intList_ = java.util.Collections.emptyList();
+      lv_ = java.util.Collections.emptyList();
+      fv_ = java.util.Collections.emptyList();
+      dv_ = java.util.Collections.emptyList();
+      bv_ = java.util.Collections.emptyList();
+      sv_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -202,10 +412,6 @@ public final class FooBar {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -213,11 +419,20 @@ public final class FooBar {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, id_);
+      for (int i = 0; i < lv_.size(); i++) {
+        output.writeInt64(1, lv_.get(i));
       }
-      for (int i = 0; i < intList_.size(); i++) {
-        output.writeInt32(2, intList_.get(i));
+      for (int i = 0; i < fv_.size(); i++) {
+        output.writeFloat(2, fv_.get(i));
+      }
+      for (int i = 0; i < dv_.size(); i++) {
+        output.writeDouble(3, dv_.get(i));
+      }
+      for (int i = 0; i < bv_.size(); i++) {
+        output.writeBool(4, bv_.get(i));
+      }
+      for (int i = 0; i < sv_.size(); i++) {
+        output.writeBytes(5, sv_.getByteString(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -228,18 +443,41 @@ public final class FooBar {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, id_);
+      {
+        int dataSize = 0;
+        for (int i = 0; i < lv_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeInt64SizeNoTag(lv_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getLvList().size();
       }
       {
         int dataSize = 0;
-        for (int i = 0; i < intList_.size(); i++) {
+        dataSize = 4 * getFvList().size();
+        size += dataSize;
+        size += 1 * getFvList().size();
+      }
+      {
+        int dataSize = 0;
+        dataSize = 8 * getDvList().size();
+        size += dataSize;
+        size += 1 * getDvList().size();
+      }
+      {
+        int dataSize = 0;
+        dataSize = 1 * getBvList().size();
+        size += dataSize;
+        size += 1 * getBvList().size();
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < sv_.size(); i++) {
           dataSize += com.google.protobuf.CodedOutputStream
-            .computeInt32SizeNoTag(intList_.get(i));
+            .computeBytesSizeNoTag(sv_.getByteString(i));
         }
         size += dataSize;
-        size += 1 * getIntListList().size();
+        size += 1 * getSvList().size();
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -253,53 +491,53 @@ public final class FooBar {
       return super.writeReplace();
     }
 
-    public static FooBar.Bar parseFrom(
+    public static org.alking.dynapb.FooBar.Bar parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static FooBar.Bar parseFrom(
+    public static org.alking.dynapb.FooBar.Bar parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static FooBar.Bar parseFrom(byte[] data)
+    public static org.alking.dynapb.FooBar.Bar parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static FooBar.Bar parseFrom(
+    public static org.alking.dynapb.FooBar.Bar parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static FooBar.Bar parseFrom(java.io.InputStream input)
+    public static org.alking.dynapb.FooBar.Bar parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static FooBar.Bar parseFrom(
+    public static org.alking.dynapb.FooBar.Bar parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static FooBar.Bar parseDelimitedFrom(java.io.InputStream input)
+    public static org.alking.dynapb.FooBar.Bar parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static FooBar.Bar parseDelimitedFrom(
+    public static org.alking.dynapb.FooBar.Bar parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static FooBar.Bar parseFrom(
+    public static org.alking.dynapb.FooBar.Bar parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static FooBar.Bar parseFrom(
+    public static org.alking.dynapb.FooBar.Bar parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -308,7 +546,7 @@ public final class FooBar {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(FooBar.Bar prototype) {
+    public static Builder newBuilder(org.alking.dynapb.FooBar.Bar prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -325,17 +563,17 @@ public final class FooBar {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:Bar)
-        FooBar.BarOrBuilder {
+        org.alking.dynapb.FooBar.BarOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return FooBar.internal_static_Bar_descriptor;
+        return org.alking.dynapb.FooBar.internal_static_Bar_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return FooBar.internal_static_Bar_fieldAccessorTable
+        return org.alking.dynapb.FooBar.internal_static_Bar_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                FooBar.Bar.class, FooBar.Bar.Builder.class);
+                org.alking.dynapb.FooBar.Bar.class, org.alking.dynapb.FooBar.Bar.Builder.class);
       }
 
       // Construct using org.alking.dynapb.FooBar.Bar.newBuilder()
@@ -358,10 +596,16 @@ public final class FooBar {
 
       public Builder clear() {
         super.clear();
-        id_ = 0;
+        lv_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000001);
-        intList_ = java.util.Collections.emptyList();
+        fv_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000002);
+        dv_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        bv_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000008);
+        sv_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -371,60 +615,111 @@ public final class FooBar {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return FooBar.internal_static_Bar_descriptor;
+        return org.alking.dynapb.FooBar.internal_static_Bar_descriptor;
       }
 
-      public FooBar.Bar getDefaultInstanceForType() {
-        return FooBar.Bar.getDefaultInstance();
+      public org.alking.dynapb.FooBar.Bar getDefaultInstanceForType() {
+        return org.alking.dynapb.FooBar.Bar.getDefaultInstance();
       }
 
-      public FooBar.Bar build() {
-        FooBar.Bar result = buildPartial();
+      public org.alking.dynapb.FooBar.Bar build() {
+        org.alking.dynapb.FooBar.Bar result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public FooBar.Bar buildPartial() {
-        FooBar.Bar result = new FooBar.Bar(this);
+      public org.alking.dynapb.FooBar.Bar buildPartial() {
+        org.alking.dynapb.FooBar.Bar result = new org.alking.dynapb.FooBar.Bar(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          lv_ = java.util.Collections.unmodifiableList(lv_);
+          bitField0_ = (bitField0_ & ~0x00000001);
         }
-        result.id_ = id_;
+        result.lv_ = lv_;
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          intList_ = java.util.Collections.unmodifiableList(intList_);
+          fv_ = java.util.Collections.unmodifiableList(fv_);
           bitField0_ = (bitField0_ & ~0x00000002);
         }
-        result.intList_ = intList_;
-        result.bitField0_ = to_bitField0_;
+        result.fv_ = fv_;
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          dv_ = java.util.Collections.unmodifiableList(dv_);
+          bitField0_ = (bitField0_ & ~0x00000004);
+        }
+        result.dv_ = dv_;
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          bv_ = java.util.Collections.unmodifiableList(bv_);
+          bitField0_ = (bitField0_ & ~0x00000008);
+        }
+        result.bv_ = bv_;
+        if (((bitField0_ & 0x00000010) == 0x00000010)) {
+          sv_ = sv_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000010);
+        }
+        result.sv_ = sv_;
         onBuilt();
         return result;
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof FooBar.Bar) {
-          return mergeFrom((FooBar.Bar)other);
+        if (other instanceof org.alking.dynapb.FooBar.Bar) {
+          return mergeFrom((org.alking.dynapb.FooBar.Bar)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(FooBar.Bar other) {
-        if (other == FooBar.Bar.getDefaultInstance()) return this;
-        if (other.hasId()) {
-          setId(other.getId());
+      public Builder mergeFrom(org.alking.dynapb.FooBar.Bar other) {
+        if (other == org.alking.dynapb.FooBar.Bar.getDefaultInstance()) return this;
+        if (!other.lv_.isEmpty()) {
+          if (lv_.isEmpty()) {
+            lv_ = other.lv_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureLvIsMutable();
+            lv_.addAll(other.lv_);
+          }
+          onChanged();
         }
-        if (!other.intList_.isEmpty()) {
-          if (intList_.isEmpty()) {
-            intList_ = other.intList_;
+        if (!other.fv_.isEmpty()) {
+          if (fv_.isEmpty()) {
+            fv_ = other.fv_;
             bitField0_ = (bitField0_ & ~0x00000002);
           } else {
-            ensureIntListIsMutable();
-            intList_.addAll(other.intList_);
+            ensureFvIsMutable();
+            fv_.addAll(other.fv_);
+          }
+          onChanged();
+        }
+        if (!other.dv_.isEmpty()) {
+          if (dv_.isEmpty()) {
+            dv_ = other.dv_;
+            bitField0_ = (bitField0_ & ~0x00000004);
+          } else {
+            ensureDvIsMutable();
+            dv_.addAll(other.dv_);
+          }
+          onChanged();
+        }
+        if (!other.bv_.isEmpty()) {
+          if (bv_.isEmpty()) {
+            bv_ = other.bv_;
+            bitField0_ = (bitField0_ & ~0x00000008);
+          } else {
+            ensureBvIsMutable();
+            bv_.addAll(other.bv_);
+          }
+          onChanged();
+        }
+        if (!other.sv_.isEmpty()) {
+          if (sv_.isEmpty()) {
+            sv_ = other.sv_;
+            bitField0_ = (bitField0_ & ~0x00000010);
+          } else {
+            ensureSvIsMutable();
+            sv_.addAll(other.sv_);
           }
           onChanged();
         }
@@ -433,10 +728,6 @@ public final class FooBar {
       }
 
       public final boolean isInitialized() {
-        if (!hasId()) {
-          
-          return false;
-        }
         return true;
       }
 
@@ -444,11 +735,11 @@ public final class FooBar {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        FooBar.Bar parsedMessage = null;
+        org.alking.dynapb.FooBar.Bar parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (FooBar.Bar) e.getUnfinishedMessage();
+          parsedMessage = (org.alking.dynapb.FooBar.Bar) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -459,100 +750,359 @@ public final class FooBar {
       }
       private int bitField0_;
 
-      private int id_ ;
-      /**
-       * <code>required int32 id = 1;</code>
-       */
-      public boolean hasId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+      private java.util.List<java.lang.Long> lv_ = java.util.Collections.emptyList();
+      private void ensureLvIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          lv_ = new java.util.ArrayList<java.lang.Long>(lv_);
+          bitField0_ |= 0x00000001;
+         }
       }
       /**
-       * <code>required int32 id = 1;</code>
+       * <code>repeated int64 lv = 1;</code>
        */
-      public int getId() {
-        return id_;
+      public java.util.List<java.lang.Long>
+          getLvList() {
+        return java.util.Collections.unmodifiableList(lv_);
       }
       /**
-       * <code>required int32 id = 1;</code>
+       * <code>repeated int64 lv = 1;</code>
        */
-      public Builder setId(int value) {
-        bitField0_ |= 0x00000001;
-        id_ = value;
+      public int getLvCount() {
+        return lv_.size();
+      }
+      /**
+       * <code>repeated int64 lv = 1;</code>
+       */
+      public long getLv(int index) {
+        return lv_.get(index);
+      }
+      /**
+       * <code>repeated int64 lv = 1;</code>
+       */
+      public Builder setLv(
+          int index, long value) {
+        ensureLvIsMutable();
+        lv_.set(index, value);
         onChanged();
         return this;
       }
       /**
-       * <code>required int32 id = 1;</code>
+       * <code>repeated int64 lv = 1;</code>
        */
-      public Builder clearId() {
+      public Builder addLv(long value) {
+        ensureLvIsMutable();
+        lv_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated int64 lv = 1;</code>
+       */
+      public Builder addAllLv(
+          java.lang.Iterable<? extends java.lang.Long> values) {
+        ensureLvIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, lv_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated int64 lv = 1;</code>
+       */
+      public Builder clearLv() {
+        lv_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000001);
-        id_ = 0;
         onChanged();
         return this;
       }
 
-      private java.util.List<java.lang.Integer> intList_ = java.util.Collections.emptyList();
-      private void ensureIntListIsMutable() {
+      private java.util.List<java.lang.Float> fv_ = java.util.Collections.emptyList();
+      private void ensureFvIsMutable() {
         if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          intList_ = new java.util.ArrayList<java.lang.Integer>(intList_);
+          fv_ = new java.util.ArrayList<java.lang.Float>(fv_);
           bitField0_ |= 0x00000002;
          }
       }
       /**
-       * <code>repeated int32 int_list = 2;</code>
+       * <code>repeated float fv = 2;</code>
        */
-      public java.util.List<java.lang.Integer>
-          getIntListList() {
-        return java.util.Collections.unmodifiableList(intList_);
+      public java.util.List<java.lang.Float>
+          getFvList() {
+        return java.util.Collections.unmodifiableList(fv_);
       }
       /**
-       * <code>repeated int32 int_list = 2;</code>
+       * <code>repeated float fv = 2;</code>
        */
-      public int getIntListCount() {
-        return intList_.size();
+      public int getFvCount() {
+        return fv_.size();
       }
       /**
-       * <code>repeated int32 int_list = 2;</code>
+       * <code>repeated float fv = 2;</code>
        */
-      public int getIntList(int index) {
-        return intList_.get(index);
+      public float getFv(int index) {
+        return fv_.get(index);
       }
       /**
-       * <code>repeated int32 int_list = 2;</code>
+       * <code>repeated float fv = 2;</code>
        */
-      public Builder setIntList(
-          int index, int value) {
-        ensureIntListIsMutable();
-        intList_.set(index, value);
+      public Builder setFv(
+          int index, float value) {
+        ensureFvIsMutable();
+        fv_.set(index, value);
         onChanged();
         return this;
       }
       /**
-       * <code>repeated int32 int_list = 2;</code>
+       * <code>repeated float fv = 2;</code>
        */
-      public Builder addIntList(int value) {
-        ensureIntListIsMutable();
-        intList_.add(value);
+      public Builder addFv(float value) {
+        ensureFvIsMutable();
+        fv_.add(value);
         onChanged();
         return this;
       }
       /**
-       * <code>repeated int32 int_list = 2;</code>
+       * <code>repeated float fv = 2;</code>
        */
-      public Builder addAllIntList(
-          java.lang.Iterable<? extends java.lang.Integer> values) {
-        ensureIntListIsMutable();
+      public Builder addAllFv(
+          java.lang.Iterable<? extends java.lang.Float> values) {
+        ensureFvIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, intList_);
+            values, fv_);
         onChanged();
         return this;
       }
       /**
-       * <code>repeated int32 int_list = 2;</code>
+       * <code>repeated float fv = 2;</code>
        */
-      public Builder clearIntList() {
-        intList_ = java.util.Collections.emptyList();
+      public Builder clearFv() {
+        fv_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<java.lang.Double> dv_ = java.util.Collections.emptyList();
+      private void ensureDvIsMutable() {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+          dv_ = new java.util.ArrayList<java.lang.Double>(dv_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+      /**
+       * <code>repeated double dv = 3;</code>
+       */
+      public java.util.List<java.lang.Double>
+          getDvList() {
+        return java.util.Collections.unmodifiableList(dv_);
+      }
+      /**
+       * <code>repeated double dv = 3;</code>
+       */
+      public int getDvCount() {
+        return dv_.size();
+      }
+      /**
+       * <code>repeated double dv = 3;</code>
+       */
+      public double getDv(int index) {
+        return dv_.get(index);
+      }
+      /**
+       * <code>repeated double dv = 3;</code>
+       */
+      public Builder setDv(
+          int index, double value) {
+        ensureDvIsMutable();
+        dv_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated double dv = 3;</code>
+       */
+      public Builder addDv(double value) {
+        ensureDvIsMutable();
+        dv_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated double dv = 3;</code>
+       */
+      public Builder addAllDv(
+          java.lang.Iterable<? extends java.lang.Double> values) {
+        ensureDvIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, dv_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated double dv = 3;</code>
+       */
+      public Builder clearDv() {
+        dv_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<java.lang.Boolean> bv_ = java.util.Collections.emptyList();
+      private void ensureBvIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          bv_ = new java.util.ArrayList<java.lang.Boolean>(bv_);
+          bitField0_ |= 0x00000008;
+         }
+      }
+      /**
+       * <code>repeated bool bv = 4;</code>
+       */
+      public java.util.List<java.lang.Boolean>
+          getBvList() {
+        return java.util.Collections.unmodifiableList(bv_);
+      }
+      /**
+       * <code>repeated bool bv = 4;</code>
+       */
+      public int getBvCount() {
+        return bv_.size();
+      }
+      /**
+       * <code>repeated bool bv = 4;</code>
+       */
+      public boolean getBv(int index) {
+        return bv_.get(index);
+      }
+      /**
+       * <code>repeated bool bv = 4;</code>
+       */
+      public Builder setBv(
+          int index, boolean value) {
+        ensureBvIsMutable();
+        bv_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated bool bv = 4;</code>
+       */
+      public Builder addBv(boolean value) {
+        ensureBvIsMutable();
+        bv_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated bool bv = 4;</code>
+       */
+      public Builder addAllBv(
+          java.lang.Iterable<? extends java.lang.Boolean> values) {
+        ensureBvIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, bv_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated bool bv = 4;</code>
+       */
+      public Builder clearBv() {
+        bv_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.LazyStringList sv_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureSvIsMutable() {
+        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+          sv_ = new com.google.protobuf.LazyStringArrayList(sv_);
+          bitField0_ |= 0x00000010;
+         }
+      }
+      /**
+       * <code>repeated string sv = 5;</code>
+       */
+      public com.google.protobuf.ProtocolStringList
+          getSvList() {
+        return sv_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string sv = 5;</code>
+       */
+      public int getSvCount() {
+        return sv_.size();
+      }
+      /**
+       * <code>repeated string sv = 5;</code>
+       */
+      public java.lang.String getSv(int index) {
+        return sv_.get(index);
+      }
+      /**
+       * <code>repeated string sv = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSvBytes(int index) {
+        return sv_.getByteString(index);
+      }
+      /**
+       * <code>repeated string sv = 5;</code>
+       */
+      public Builder setSv(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureSvIsMutable();
+        sv_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string sv = 5;</code>
+       */
+      public Builder addSv(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureSvIsMutable();
+        sv_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string sv = 5;</code>
+       */
+      public Builder addAllSv(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureSvIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, sv_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string sv = 5;</code>
+       */
+      public Builder clearSv() {
+        sv_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string sv = 5;</code>
+       */
+      public Builder addSvBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureSvIsMutable();
+        sv_.add(value);
         onChanged();
         return this;
       }
@@ -621,19 +1171,6 @@ public final class FooBar {
      */
     com.google.protobuf.ByteString
         getVarStringBytes();
-
-    /**
-     * <code>optional .Bar bar = 6;</code>
-     */
-    boolean hasBar();
-    /**
-     * <code>optional .Bar bar = 6;</code>
-     */
-    FooBar.Bar getBar();
-    /**
-     * <code>optional .Bar bar = 6;</code>
-     */
-    FooBar.BarOrBuilder getBarOrBuilder();
   }
   /**
    * Protobuf type {@code Foo}
@@ -713,19 +1250,6 @@ public final class FooBar {
               varString_ = bs;
               break;
             }
-            case 50: {
-              FooBar.Bar.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000020) == 0x00000020)) {
-                subBuilder = bar_.toBuilder();
-              }
-              bar_ = input.readMessage(FooBar.Bar.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(bar_);
-                bar_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000020;
-              break;
-            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -740,14 +1264,14 @@ public final class FooBar {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return FooBar.internal_static_Foo_descriptor;
+      return org.alking.dynapb.FooBar.internal_static_Foo_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return FooBar.internal_static_Foo_fieldAccessorTable
+      return org.alking.dynapb.FooBar.internal_static_Foo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              FooBar.Foo.class, FooBar.Foo.Builder.class);
+              org.alking.dynapb.FooBar.Foo.class, org.alking.dynapb.FooBar.Foo.Builder.class);
     }
 
     public static com.google.protobuf.Parser<Foo> PARSER =
@@ -868,34 +1392,12 @@ public final class FooBar {
       }
     }
 
-    public static final int BAR_FIELD_NUMBER = 6;
-    private FooBar.Bar bar_;
-    /**
-     * <code>optional .Bar bar = 6;</code>
-     */
-    public boolean hasBar() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
-    }
-    /**
-     * <code>optional .Bar bar = 6;</code>
-     */
-    public FooBar.Bar getBar() {
-      return bar_;
-    }
-    /**
-     * <code>optional .Bar bar = 6;</code>
-     */
-    public FooBar.BarOrBuilder getBarOrBuilder() {
-      return bar_;
-    }
-
     private void initFields() {
       varInt_ = 0L;
       varFloat_ = 0F;
       varDouble_ = 0D;
       varBool_ = false;
       varString_ = "";
-      bar_ = FooBar.Bar.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -903,12 +1405,6 @@ public final class FooBar {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (hasBar()) {
-        if (!getBar().isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -930,9 +1426,6 @@ public final class FooBar {
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeBytes(5, getVarStringBytes());
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeMessage(6, bar_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -963,10 +1456,6 @@ public final class FooBar {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(5, getVarStringBytes());
       }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, bar_);
-      }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
@@ -979,53 +1468,53 @@ public final class FooBar {
       return super.writeReplace();
     }
 
-    public static FooBar.Foo parseFrom(
+    public static org.alking.dynapb.FooBar.Foo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static FooBar.Foo parseFrom(
+    public static org.alking.dynapb.FooBar.Foo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static FooBar.Foo parseFrom(byte[] data)
+    public static org.alking.dynapb.FooBar.Foo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static FooBar.Foo parseFrom(
+    public static org.alking.dynapb.FooBar.Foo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static FooBar.Foo parseFrom(java.io.InputStream input)
+    public static org.alking.dynapb.FooBar.Foo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static FooBar.Foo parseFrom(
+    public static org.alking.dynapb.FooBar.Foo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static FooBar.Foo parseDelimitedFrom(java.io.InputStream input)
+    public static org.alking.dynapb.FooBar.Foo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static FooBar.Foo parseDelimitedFrom(
+    public static org.alking.dynapb.FooBar.Foo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static FooBar.Foo parseFrom(
+    public static org.alking.dynapb.FooBar.Foo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static FooBar.Foo parseFrom(
+    public static org.alking.dynapb.FooBar.Foo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1034,7 +1523,7 @@ public final class FooBar {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(FooBar.Foo prototype) {
+    public static Builder newBuilder(org.alking.dynapb.FooBar.Foo prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -1051,17 +1540,17 @@ public final class FooBar {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:Foo)
-        FooBar.FooOrBuilder {
+        org.alking.dynapb.FooBar.FooOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return FooBar.internal_static_Foo_descriptor;
+        return org.alking.dynapb.FooBar.internal_static_Foo_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return FooBar.internal_static_Foo_fieldAccessorTable
+        return org.alking.dynapb.FooBar.internal_static_Foo_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                FooBar.Foo.class, FooBar.Foo.Builder.class);
+                org.alking.dynapb.FooBar.Foo.class, org.alking.dynapb.FooBar.Foo.Builder.class);
       }
 
       // Construct using org.alking.dynapb.FooBar.Foo.newBuilder()
@@ -1076,7 +1565,6 @@ public final class FooBar {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getBarFieldBuilder();
         }
       }
       private static Builder create() {
@@ -1095,12 +1583,6 @@ public final class FooBar {
         bitField0_ = (bitField0_ & ~0x00000008);
         varString_ = "";
         bitField0_ = (bitField0_ & ~0x00000010);
-        if (barBuilder_ == null) {
-          bar_ = FooBar.Bar.getDefaultInstance();
-        } else {
-          barBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
@@ -1110,23 +1592,23 @@ public final class FooBar {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return FooBar.internal_static_Foo_descriptor;
+        return org.alking.dynapb.FooBar.internal_static_Foo_descriptor;
       }
 
-      public FooBar.Foo getDefaultInstanceForType() {
-        return FooBar.Foo.getDefaultInstance();
+      public org.alking.dynapb.FooBar.Foo getDefaultInstanceForType() {
+        return org.alking.dynapb.FooBar.Foo.getDefaultInstance();
       }
 
-      public FooBar.Foo build() {
-        FooBar.Foo result = buildPartial();
+      public org.alking.dynapb.FooBar.Foo build() {
+        org.alking.dynapb.FooBar.Foo result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public FooBar.Foo buildPartial() {
-        FooBar.Foo result = new FooBar.Foo(this);
+      public org.alking.dynapb.FooBar.Foo buildPartial() {
+        org.alking.dynapb.FooBar.Foo result = new org.alking.dynapb.FooBar.Foo(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -1149,30 +1631,22 @@ public final class FooBar {
           to_bitField0_ |= 0x00000010;
         }
         result.varString_ = varString_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        if (barBuilder_ == null) {
-          result.bar_ = bar_;
-        } else {
-          result.bar_ = barBuilder_.build();
-        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof FooBar.Foo) {
-          return mergeFrom((FooBar.Foo)other);
+        if (other instanceof org.alking.dynapb.FooBar.Foo) {
+          return mergeFrom((org.alking.dynapb.FooBar.Foo)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(FooBar.Foo other) {
-        if (other == FooBar.Foo.getDefaultInstance()) return this;
+      public Builder mergeFrom(org.alking.dynapb.FooBar.Foo other) {
+        if (other == org.alking.dynapb.FooBar.Foo.getDefaultInstance()) return this;
         if (other.hasVarInt()) {
           setVarInt(other.getVarInt());
         }
@@ -1190,20 +1664,11 @@ public final class FooBar {
           varString_ = other.varString_;
           onChanged();
         }
-        if (other.hasBar()) {
-          mergeBar(other.getBar());
-        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
       public final boolean isInitialized() {
-        if (hasBar()) {
-          if (!getBar().isInitialized()) {
-            
-            return false;
-          }
-        }
         return true;
       }
 
@@ -1211,11 +1676,11 @@ public final class FooBar {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        FooBar.Foo parsedMessage = null;
+        org.alking.dynapb.FooBar.Foo parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (FooBar.Foo) e.getUnfinishedMessage();
+          parsedMessage = (org.alking.dynapb.FooBar.Foo) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -1430,122 +1895,6 @@ public final class FooBar {
         return this;
       }
 
-      private FooBar.Bar bar_ = FooBar.Bar.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          FooBar.Bar, FooBar.Bar.Builder, FooBar.BarOrBuilder> barBuilder_;
-      /**
-       * <code>optional .Bar bar = 6;</code>
-       */
-      public boolean hasBar() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
-      }
-      /**
-       * <code>optional .Bar bar = 6;</code>
-       */
-      public FooBar.Bar getBar() {
-        if (barBuilder_ == null) {
-          return bar_;
-        } else {
-          return barBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .Bar bar = 6;</code>
-       */
-      public Builder setBar(FooBar.Bar value) {
-        if (barBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          bar_ = value;
-          onChanged();
-        } else {
-          barBuilder_.setMessage(value);
-        }
-        bitField0_ |= 0x00000020;
-        return this;
-      }
-      /**
-       * <code>optional .Bar bar = 6;</code>
-       */
-      public Builder setBar(
-          FooBar.Bar.Builder builderForValue) {
-        if (barBuilder_ == null) {
-          bar_ = builderForValue.build();
-          onChanged();
-        } else {
-          barBuilder_.setMessage(builderForValue.build());
-        }
-        bitField0_ |= 0x00000020;
-        return this;
-      }
-      /**
-       * <code>optional .Bar bar = 6;</code>
-       */
-      public Builder mergeBar(FooBar.Bar value) {
-        if (barBuilder_ == null) {
-          if (((bitField0_ & 0x00000020) == 0x00000020) &&
-              bar_ != FooBar.Bar.getDefaultInstance()) {
-            bar_ =
-              FooBar.Bar.newBuilder(bar_).mergeFrom(value).buildPartial();
-          } else {
-            bar_ = value;
-          }
-          onChanged();
-        } else {
-          barBuilder_.mergeFrom(value);
-        }
-        bitField0_ |= 0x00000020;
-        return this;
-      }
-      /**
-       * <code>optional .Bar bar = 6;</code>
-       */
-      public Builder clearBar() {
-        if (barBuilder_ == null) {
-          bar_ = FooBar.Bar.getDefaultInstance();
-          onChanged();
-        } else {
-          barBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000020);
-        return this;
-      }
-      /**
-       * <code>optional .Bar bar = 6;</code>
-       */
-      public FooBar.Bar.Builder getBarBuilder() {
-        bitField0_ |= 0x00000020;
-        onChanged();
-        return getBarFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .Bar bar = 6;</code>
-       */
-      public FooBar.BarOrBuilder getBarOrBuilder() {
-        if (barBuilder_ != null) {
-          return barBuilder_.getMessageOrBuilder();
-        } else {
-          return bar_;
-        }
-      }
-      /**
-       * <code>optional .Bar bar = 6;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilder<
-          FooBar.Bar, FooBar.Bar.Builder, FooBar.BarOrBuilder>
-          getBarFieldBuilder() {
-        if (barBuilder_ == null) {
-          barBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              FooBar.Bar, FooBar.Bar.Builder, FooBar.BarOrBuilder>(
-                  getBar(),
-                  getParentForChildren(),
-                  isClean());
-          bar_ = null;
-        }
-        return barBuilder_;
-      }
-
       // @@protoc_insertion_point(builder_scope:Foo)
     }
 
@@ -1576,12 +1925,12 @@ public final class FooBar {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016proto/pb.proto\"#\n\003Bar\022\n\n\002id\030\001 \002(\005\022\020\n\010i" +
-      "nt_list\030\002 \003(\005\"v\n\003Foo\022\017\n\007var_int\030\001 \001(\003\022\021\n" +
-      "\tvar_float\030\002 \001(\002\022\022\n\nvar_double\030\003 \001(\001\022\020\n\010" +
-      "var_bool\030\004 \001(\010\022\022\n\nvar_string\030\005 \001(\t\022\021\n\003ba" +
-      "r\030\006 \001(\0132\004.BarB\037\n\021org.alking.dynapbB\nDyna" +
-      "PbTest"
+      "\n\016proto/pb.proto\"A\n\003Bar\022\n\n\002lv\030\001 \003(\003\022\n\n\002f" +
+      "v\030\002 \003(\002\022\n\n\002dv\030\003 \003(\001\022\n\n\002bv\030\004 \003(\010\022\n\n\002sv\030\005 " +
+      "\003(\t\"c\n\003Foo\022\017\n\007var_int\030\001 \001(\003\022\021\n\tvar_float" +
+      "\030\002 \001(\002\022\022\n\nvar_double\030\003 \001(\001\022\020\n\010var_bool\030\004" +
+      " \001(\010\022\022\n\nvar_string\030\005 \001(\tB\033\n\021org.alking.d" +
+      "ynapbB\006FooBar"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1600,13 +1949,13 @@ public final class FooBar {
     internal_static_Bar_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_Bar_descriptor,
-        new java.lang.String[] { "Id", "IntList", });
+        new java.lang.String[] { "Lv", "Fv", "Dv", "Bv", "Sv", });
     internal_static_Foo_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_Foo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_Foo_descriptor,
-        new java.lang.String[] { "VarInt", "VarFloat", "VarDouble", "VarBool", "VarString", "Bar", });
+        new java.lang.String[] { "VarInt", "VarFloat", "VarDouble", "VarBool", "VarString", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

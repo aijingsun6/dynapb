@@ -65,31 +65,60 @@ public class DynaPbTest {
         }
     }
 
-    public static class DBar {
+    public static class AA {
 
         @PbSerializedName(fieldNum = 1)
-        private Integer lv;
-
+        private List<Long> lv;
         @PbSerializedName(fieldNum = 2)
-        private List<Integer> ll = new ArrayList<>();
+        private List<Float> fv;
+        @PbSerializedName(fieldNum = 3)
+        private List<Double> dv;
+        @PbSerializedName(fieldNum = 4)
+        private List<Boolean> bv;
+        @PbSerializedName(fieldNum = 5)
+        private List<String> sv;
 
-        public Integer getLv() {
+        public List<Long> getLv() {
             return lv;
         }
 
-        public void setLv(Integer lv) {
+        public void setLv(List<Long> lv) {
             this.lv = lv;
         }
 
-        public List<Integer> getLl() {
-            return ll;
+        public List<Float> getFv() {
+            return fv;
         }
 
-        public void setLl(List<Integer> ll) {
-            this.ll = ll;
+        public void setFv(List<Float> fv) {
+            this.fv = fv;
         }
 
-        public DBar() {
+        public List<Double> getDv() {
+            return dv;
+        }
+
+        public void setDv(List<Double> dv) {
+            this.dv = dv;
+        }
+
+        public List<Boolean> getBv() {
+            return bv;
+        }
+
+        public void setBv(List<Boolean> bv) {
+            this.bv = bv;
+        }
+
+        public List<String> getSv() {
+            return sv;
+        }
+
+        public void setSv(List<String> sv) {
+            this.sv = sv;
+        }
+
+        public AA() {
         }
     }
 
@@ -99,7 +128,6 @@ public class DynaPbTest {
      *     decode bytes 28, times 1000000, use 1213 ms
      *     decode bytes 28, times 1000000, use 1172 ms
      * </pre>
-     *
      *
      * @throws InstantiationException
      * @throws IllegalAccessException
@@ -124,11 +152,11 @@ public class DynaPbTest {
         byte[] data = foo.toByteArray();
         long start = System.currentTimeMillis();
         int times = 100 * 10000;
-        for (int i = 0 ; i < times; i++){
-            DynaPb.decode(data,0, data.length,A.class);
+        for (int i = 0; i < times; i++) {
+            DynaPb.decode(data, 0, data.length, A.class);
         }
         long end = System.currentTimeMillis();
-        System.out.println(String.format("decode bytes %d, times %d, use %d ms",data.length, times, (end - start)));
+        System.out.println(String.format("decode bytes %d, times %d, use %d ms", data.length, times, (end - start)));
     }
 
     @Test
@@ -149,9 +177,9 @@ public class DynaPbTest {
 
         FooBar.Foo foo = builder.build();
         byte[] data = foo.toByteArray();
-        A a = DynaPb.decode(data,0, data.length,A.class);
+        A a = DynaPb.decode(data, 0, data.length, A.class);
         Assert.assertEquals(originL, a.getLv());
-        Assert.assertEquals(originF, a.getFv(),0.00001f);
+        Assert.assertEquals(originF, a.getFv(), 0.00001f);
         Assert.assertEquals(originD, a.getDv(), 0.00001f);
         Assert.assertEquals(originB, a.getBv());
         Assert.assertEquals(originS, a.getSv());
@@ -162,25 +190,48 @@ public class DynaPbTest {
 
     @Test
     public void decodeTest2() throws InstantiationException, IllegalAccessException {
-        int i1 = 100;
-        int i2 = 200;
-        int i3 = 300;
-        int i4 = 400;
-
+        Long[] al = {100L, 200L, 300L, 400L, 500L};
+        Float[] fl = {1.0f, 2.0f, 3.0f, 4.0f, 5.0f};
+        Double[] dl = {1.0d, 2.0d, 3.0d, 4.0d, 5.0d};
+        Boolean[] bl = {true, false, true, false, true};
+        String[] sl = {"one", "two", "three", "four", "five"};
         FooBar.Bar.Builder builder = FooBar.Bar.newBuilder();
-        builder.setId(i1);
-        builder.addIntList(i2);
-        builder.addIntList(i3);
-        builder.addIntList(i4);
+        for (Long v : al) {
+            builder.addLv(v);
+        }
+        for (Float v : fl) {
+            builder.addFv(v);
+        }
+        for (Double v : dl) {
+            builder.addDv(v);
+        }
+        for (Boolean v : bl) {
+            builder.addBv(v);
+        }
+        for (String v : sl) {
+            builder.addSv(v);
+        }
         byte[] data = builder.build().toByteArray();
-        DBar dbar = DynaPb.decode(data,0, data.length, DBar.class);
-        Assert.assertEquals(new Integer(i1), dbar.getLv());
-        Assert.assertEquals(3 ,dbar.getLl().size());
-        Assert.assertEquals(new Integer(i2) ,dbar.getLl().get(0));
-        Assert.assertEquals(new Integer(i3) ,dbar.getLl().get(1));
-        Assert.assertEquals(new Integer(i4) ,dbar.getLl().get(2));
+        System.out.println(String.format("encode length %d", data.length));
+        AA aa = DynaPb.decode(data, 0, data.length, AA.class);
 
-        byte[] data2 = DynaPb.encode(dbar);
+        for (int i = 0; i < al.length; i++) {
+            Assert.assertEquals(al[i], aa.getLv().get(i));
+        }
+        for (int i = 0; i < fl.length; i++) {
+            Assert.assertEquals(fl[i], aa.getFv().get(i), 0.00001f);
+        }
+        for (int i = 0; i < dl.length; i++) {
+            Assert.assertEquals(dl[i], aa.getDv().get(i), 0.00001f);
+        }
+        for (int i = 0; i < bl.length; i++) {
+            Assert.assertEquals(bl[i], aa.getBv().get(i));
+        }
+        for (int i = 0; i < sl.length;i++){
+            Assert.assertEquals(sl[i], aa.getSv().get(i));
+        }
+        byte[] data2 = DynaPb.encode(aa);
         Assert.assertArrayEquals(data, data2);
+        System.out.println("encode and decode list pass");
     }
 }
