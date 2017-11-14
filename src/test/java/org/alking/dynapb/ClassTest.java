@@ -363,5 +363,29 @@ public class ClassTest {
         }
     }
 
+    @Test
+    public void barTest() throws IllegalAccessException, InstantiationException {
+        Class clazz = Bar.class;
+        int id = 1000;
+        Object obj = clazz.newInstance();
+        Field[] fields = clazz.getDeclaredFields();
+        for (Field f: fields){
+            f.setAccessible(true);
+            if(f.getName().equals("id")){
+                f.set(obj,id);
+            }
+        }
+        Bar bar = (Bar)obj;
+        Assert.assertEquals(id, bar.getId());
+        Integer id2 = 100;
+        for (Field f: fields){
+            f.setAccessible(true);
+            if(f.getName().equals("id")){
+                f.set(obj,id2);
+            }
+        }
+
+    }
+
 
 }

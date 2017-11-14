@@ -104,18 +104,21 @@ public class DynaPb {
             return;
         }
         // List<CustomClass>
-        Class c = (Class)at;
+        Class<?> c = (Class<?>)at;
         List list = (List)obj;
         Object co = decodeObj(value, c);
         list.add(co);
     }
 
-    static Object decodeObj(PbValue value, Class clazz) throws IllegalAccessException, InstantiationException {
-        byte[] data = new byte[value.size()];
-        value.write(data,0);
+    static <T> T decodeObj(PbValue value, Class<T> clazz) throws IllegalAccessException, InstantiationException {
+        WireType wt = value.wireType();
+        if(!wt.equals(WireType.BYTES)){
+            throw new PbException( String.format("illegal wire type %s",wt));
+        }
+        PbBytes bytes  = (PbBytes)value;
         PbMessage msg = new PbMessage();
-        msg.read(data, 0, data.length);
-        Object obj = clazz.newInstance();
+        msg.read(bytes.getBytes(), bytes.getOffset(), bytes.getSize());
+        T obj = clazz.newInstance();
         decode(msg,clazz, obj);
         return obj;
     }
@@ -131,28 +134,29 @@ public class DynaPb {
         }
 
         // Boolean or boolean
-        if(Boolean.class.equals(c) || boolean.class.equals(c)){
-            field.setBoolean(t, v.boolValue());
+        if(Boolean.class.equals(c) ||  boolean.class.equals(c)){
+            field.set(t, v.boolValue());
             return;
         }
+
         // Integer or int
         if(Integer.class.equals(c) || int.class.equals(c)){
-            field.setInt(t, v.intValue());
+            field.set(t, v.intValue());
             return;
         }
         // Long or long
         if(Long.class.equals(c) || long.class.equals(c)){
-            field.setLong(t, v.longValue());
+            field.set(t, v.longValue());
             return;
         }
         // Float or float
         if(Float.class.equals(c) || float.class.equals(c)){
-            field.setFloat(t, v.floatValue());
+            field.set(t, v.floatValue());
             return;
         }
         // Double or double
         if(Double.class.equals(c) || double.class.equals(c)){
-            field.setDouble(t, v.doubleValue());
+            field.set(t, v.doubleValue());
             return;
         }
         // String

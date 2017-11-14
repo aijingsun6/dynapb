@@ -19,6 +19,18 @@ final class PbBytes extends PbValue {
 
     private int size;
 
+    byte[] getBytes() {
+        return bytes;
+    }
+
+    int getOffset() {
+        return offset;
+    }
+
+    int getSize() {
+        return size;
+    }
+
     public PbBytes() {
     }
 

@@ -23,7 +23,6 @@ public class DynaPbTest {
 
     @Test
     public void decodeTest1() throws InstantiationException, IllegalAccessException {
-
         Long origin = 1000L;
         FooBar.Foo.Builder builder = FooBar.Foo.newBuilder();
         builder.setVarInt(origin);
