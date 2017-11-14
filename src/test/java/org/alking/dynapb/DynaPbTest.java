@@ -3,22 +3,21 @@ package org.alking.dynapb;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DynaPbTest {
 
     public static class A {
 
-        @PbSerializedName(fieldNum = 1)
+        @PbSerializedField(1)
         private Long lv;
-        @PbSerializedName(fieldNum = 2)
+        @PbSerializedField(2)
         private Float fv;
-        @PbSerializedName(fieldNum = 3)
+        @PbSerializedField(3)
         private Double dv;
-        @PbSerializedName(fieldNum = 4)
+        @PbSerializedField(4)
         private Boolean bv;
-        @PbSerializedName(fieldNum = 5)
+        @PbSerializedField(5)
         private String sv;
 
         public Long getLv() {
@@ -67,15 +66,15 @@ public class DynaPbTest {
 
     public static class AA {
 
-        @PbSerializedName(fieldNum = 1)
+        @PbSerializedField(1)
         private List<Long> lv;
-        @PbSerializedName(fieldNum = 2)
+        @PbSerializedField(2)
         private List<Float> fv;
-        @PbSerializedName(fieldNum = 3)
+        @PbSerializedField(3)
         private List<Double> dv;
-        @PbSerializedName(fieldNum = 4)
+        @PbSerializedField(4)
         private List<Boolean> bv;
-        @PbSerializedName(fieldNum = 5)
+        @PbSerializedField(5)
         private List<String> sv;
 
         public List<Long> getLv() {

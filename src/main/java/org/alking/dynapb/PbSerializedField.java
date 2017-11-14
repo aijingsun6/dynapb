@@ -7,10 +7,10 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD})
-public @interface PbSerializedName {
+public @interface PbSerializedField {
     /**
      * field number
      */
-    int fieldNum();
+    int value();
 
 }

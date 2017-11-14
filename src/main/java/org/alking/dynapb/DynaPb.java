@@ -63,11 +63,11 @@ public class DynaPb {
         Map<Integer, String> map = new HashMap<>();
         for (Field f : fields) {
             String name = f.getName();
-            PbSerializedName anno = f.getAnnotation(PbSerializedName.class);
+            PbSerializedField anno = f.getAnnotation(PbSerializedField.class);
             if (anno == null) {
                 continue;
             }
-            int fieldNum = anno.fieldNum();
+            int fieldNum = anno.value();
             // check duplicate field number
             if (map.containsKey(fieldNum)) {
                 throw new PbException(String.format("field number %d has duplicate field %s and %s", fieldNum, map.get(fieldNum), name));
@@ -79,11 +79,11 @@ public class DynaPb {
         Field[] fields = clazz.getDeclaredFields();
         checkDuplicateFields(fields);
         for (Field f : fields) {
-            PbSerializedName anno = f.getAnnotation(PbSerializedName.class);
+            PbSerializedField anno = f.getAnnotation(PbSerializedField.class);
             if (anno == null) {
                 continue;
             }
-            int fieldNum = anno.fieldNum();
+            int fieldNum = anno.value();
             decodeField(msg.getFieldByFieldNum(fieldNum), f, t);
         }
     }
@@ -312,11 +312,11 @@ public class DynaPb {
     private static void encodeField(PbMessage msg, Field field, Object src) throws IllegalAccessException {
         Class c = field.getType();
         field.setAccessible(true);
-        PbSerializedName anno = field.getAnnotation(PbSerializedName.class);
+        PbSerializedField anno = field.getAnnotation(PbSerializedField.class);
         if (anno == null) {
             return;
         }
-        int fieldNum = anno.fieldNum();
+        int fieldNum = anno.value();
         // List<?>
         if (List.class.equals(c)) {
             encodeList(msg,field, src);
@@ -380,11 +380,11 @@ public class DynaPb {
 
     @SuppressWarnings("unchecked")
     private static void encodeList(PbMessage msg, Field field, Object src) throws IllegalAccessException {
-        PbSerializedName anno = field.getAnnotation(PbSerializedName.class);
+        PbSerializedField anno = field.getAnnotation(PbSerializedField.class);
         if (anno == null) {
             return;
         }
-        int fieldNum = anno.fieldNum();
+        int fieldNum = anno.value();
         field.setAccessible(true);
         ParameterizedType pt = (ParameterizedType) field.getGenericType();
         Type at = pt.getActualTypeArguments()[0];
