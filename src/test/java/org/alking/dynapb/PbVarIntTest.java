@@ -36,7 +36,7 @@ public class PbVarIntTest {
             FooBar.Foo foo = builder.build();
             byte[]  bytes = foo.toByteArray();
             PbVarInt pbVarInt = new PbVarInt();
-            pbVarInt.read(bytes, 1, 0);
+            pbVarInt.read(bytes, 1);
             Assert.assertEquals(v, pbVarInt.longValue());
             System.out.println(String.format("read %d passed", v));
         }
@@ -68,7 +68,7 @@ public class PbVarIntTest {
         FooBar.Foo foo = builder.build();
         byte[]  bytes = foo.toByteArray();
         PbVarInt pbVarInt = new PbVarInt();
-        pbVarInt.read(bytes, 1, 0);
+        pbVarInt.read(bytes, 1);
         Assert.assertTrue(pbVarInt.boolValue());
 
         builder = FooBar.Foo.newBuilder();
@@ -76,7 +76,7 @@ public class PbVarIntTest {
         foo = builder.build();
         bytes = foo.toByteArray();
         pbVarInt = new PbVarInt();
-        pbVarInt.read(bytes, 1, 0);
+        pbVarInt.read(bytes, 1);
         Assert.assertFalse(pbVarInt.boolValue());
     }
 

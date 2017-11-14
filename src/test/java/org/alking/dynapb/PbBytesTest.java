@@ -13,8 +13,8 @@ public class PbBytesTest {
 
         FooBar.Foo foo = builder.build();
         byte[] bytes = foo.toByteArray();
-        PbBytes pb = new PbBytes();
-        pb.read(bytes,2, bytes.length-2);
+        PbBytes pb = new PbBytes(bytes.length-2);
+        pb.read(bytes,2);
         String find = pb.stringValue();
         Assert.assertEquals(origin, find);
     }

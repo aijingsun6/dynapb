@@ -15,7 +15,7 @@ public class PbFieldTest {
         byte[] data = foo.toByteArray();
 
         PbField field = new PbField();
-        field.read(data,0, data.length);
+        field.read(data,0);
         int fieldNum = field.getFieldNum();
         WireType wireType = field.wireType();
         PbValue value = (PbValue) field.getValue();

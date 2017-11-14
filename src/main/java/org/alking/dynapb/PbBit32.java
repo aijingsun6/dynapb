@@ -66,7 +66,7 @@ final class PbBit32 extends PbValue {
     }
 
     @Override
-    public int read(final byte[] data, final int offset, final int limit) {
+    public int read(final byte[] data, final int offset) {
         if(data == null || data.length < offset + SIZE){
             throw new IllegalArgumentException("data error");
         }
@@ -89,10 +89,10 @@ final class PbBit32 extends PbValue {
     }
 
     @Override
-    public int read(final InputStream is, final int limit) throws IOException {
+    public int read(final InputStream is) throws IOException {
         byte[] tBytes = localBytes.get();
         IOUtils.read(is, tBytes, 0, SIZE);
-        return this.read(tBytes, 0, limit);
+        return this.read(tBytes, 0);
     }
 
     @Override
@@ -104,7 +104,7 @@ final class PbBit32 extends PbValue {
     }
 
     @Override
-    public int read(final ByteBuffer buffer, final int limit) {
+    public int read(final ByteBuffer buffer) {
         FloatBuffer bf = buffer.asFloatBuffer();
         this.value = bf.get();
         return SIZE;

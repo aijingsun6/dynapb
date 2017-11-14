@@ -31,10 +31,11 @@ final class PbBytes extends PbValue {
         return size;
     }
 
-    public PbBytes() {
+    PbBytes(int size) {
+        this.size = size;
     }
 
-    public PbBytes(String s) {
+    PbBytes(String s) {
         if (s == null) {
             throw new PbException("string is null");
         }
@@ -43,7 +44,7 @@ final class PbBytes extends PbValue {
         this.size = this.bytes.length;
     }
 
-    public PbBytes(byte[] data, int offset, int size) {
+    PbBytes(byte[] data, int offset, int size) {
         if (data == null) {
             throw new PbException("data is null");
         }
@@ -96,13 +97,12 @@ final class PbBytes extends PbValue {
     }
 
     @Override
-    public int read(final byte[] data, final int offset, final int limit) {
-        if (data == null || data.length < (offset + limit)) {
+    public int read(final byte[] data, final int offset) {
+        if (data == null || data.length < (offset + this.size)) {
             throw new PbException("param data error");
         }
         this.bytes = data;
         this.offset = offset;
-        this.size = limit;
         return this.size;
     }
 
@@ -116,10 +116,9 @@ final class PbBytes extends PbValue {
     }
 
     @Override
-    public int read(final InputStream is, final int limit) throws IOException {
-        this.bytes = new byte[limit];
+    public int read(final InputStream is) throws IOException {
+        this.bytes = new byte[this.size];
         this.offset = 0;
-        this.size = limit;
         IOUtils.read(is, this.bytes, 0, this.size);
         return this.size;
     }
@@ -131,11 +130,10 @@ final class PbBytes extends PbValue {
     }
 
     @Override
-    public int read(final ByteBuffer buffer, final int limit) {
-        this.bytes = new byte[limit];
+    public int read(final ByteBuffer buffer) {
+        this.bytes = new byte[this.size];
         this.offset = 0;
-        this.size = limit;
-        buffer.get(this.bytes, 0, limit);
+        buffer.get(this.bytes, 0, size);
         return this.size;
     }
 

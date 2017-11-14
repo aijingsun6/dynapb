@@ -91,7 +91,7 @@ final class PbVarInt extends PbValue {
     }
 
     @Override
-    public int read(final byte[] data, final int offset, final int limit) {
+    public int read(final byte[] data, final int offset) {
         if (data == null) {
             throw new PbException("data is null");
         }
@@ -154,7 +154,7 @@ final class PbVarInt extends PbValue {
     }
 
     @Override
-    public int read(final InputStream is, final int limit) throws IOException {
+    public int read(final InputStream is) throws IOException {
         if(is == null){
             throw new IllegalArgumentException("input stream is null.");
         }
@@ -187,7 +187,7 @@ final class PbVarInt extends PbValue {
     }
 
     @Override
-    public int read(final ByteBuffer buffer, final int limit) {
+    public int read(final ByteBuffer buffer) {
         if(buffer == null){
             throw new IllegalArgumentException("input stream is null.");
         }

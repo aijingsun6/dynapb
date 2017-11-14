@@ -14,15 +14,18 @@ final class PbMessage implements PbRW {
 
     private List<PbField> fields = new ArrayList<>();
 
+    private int size = 0;
+
     public List<PbField> getFields() {
         return fields;
     }
 
     public void addField(PbField field) {
         this.fields.add(field);
+        this.size += field.size();
     }
 
-    public List<PbField> getFieldList(int fieldNum){
+    public List<PbField> getFieldByFieldNum(int fieldNum){
         List<PbField> result = new ArrayList<>();
         for(PbField f: this.fields){
             if(f.getFieldNum() == fieldNum){
@@ -32,7 +35,8 @@ final class PbMessage implements PbRW {
         return result;
     }
 
-    public PbMessage() {
+    public PbMessage(int size) {
+        this.size = size;
     }
 
     public PbMessage(List<PbField> fields) {
@@ -50,11 +54,7 @@ final class PbMessage implements PbRW {
 
     @Override
     public int size() {
-        int sum = 0;
-        for (PbField f : this.fields) {
-            sum += f.size();
-        }
-        return sum;
+       return this.size;
     }
 
     @Override
@@ -91,39 +91,39 @@ final class PbMessage implements PbRW {
     }
 
     @Override
-    public int read(byte[] data, int offset, int limit) {
+    public int read(byte[] data, int offset) {
         int sum = 0;
         int read;
-        while (sum < limit) {
+        while (sum < this.size) {
             PbField f = new PbField();
-            read = f.read(data, offset + sum, limit - sum);
-            this.addField(f);
+            read = f.read(data, offset + sum);
+            this.fields.add(f);
             sum += read;
         }
         return sum;
     }
 
     @Override
-    public int read(InputStream is, int limit) throws IOException {
+    public int read(InputStream is) throws IOException {
         int sum = 0;
         int read;
         while (is.available() > 0) {
             PbField f = new PbField();
-            read = f.read(is, 0);
-            this.addField(f);
+            read = f.read(is);
+            this.fields.add(f);
             sum += read;
         }
         return sum;
     }
 
     @Override
-    public int read(ByteBuffer buffer, int limit) {
+    public int read(ByteBuffer buffer) {
         int sum = 0;
         int read;
         while (buffer.hasRemaining()) {
             PbField f = new PbField();
-            read = f.read(buffer, 0);
-            this.addField(f);
+            read = f.read(buffer);
+            this.fields.add(f);
             sum += read;
         }
         return sum;

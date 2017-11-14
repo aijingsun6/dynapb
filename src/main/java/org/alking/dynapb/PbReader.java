@@ -8,27 +8,24 @@ interface PbReader {
 
     /**
      * read from bytes
-     * @param data
-     * @param offset
-     * @param limit used when parse {@link PbBytes}
+     * @param data byte[]
+     * @param offset offset
      * @return data size in bytes
      */
-    int read(final byte[] data, final int offset, final int limit);
+    int read(final byte[] data, final int offset);
 
     /**
      * read from {@link InputStream}
-     * @param is
-     * @param limit used when parse {@link PbBytes}
+     * @param is {@link InputStream}
      * @return data size in bytes
      * @throws IOException
      */
-    int read(final InputStream is, final int limit) throws IOException;
+    int read(final InputStream is) throws IOException;
 
     /**
      * read from {@link ByteBuffer}
-     * @param buffer
-     * @param limit  used when parse {@link PbBytes}
+     * @param buffer {@link ByteBuffer}
      * @return data size in bytes
      */
-    int read(final ByteBuffer buffer, final int limit);
+    int read(final ByteBuffer buffer);
 }

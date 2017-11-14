@@ -14,7 +14,7 @@ public class PbBit64Test {
         FooBar.Foo foo = builder.build();
         byte[]  bytes = foo.toByteArray();
         PbBit64 bit64 = new PbBit64();
-        bit64.read(bytes, 1, 0);
+        bit64.read(bytes, 1);
         Assert.assertEquals(origin, bit64.doubleValue(), 0.000001f);
     }
 

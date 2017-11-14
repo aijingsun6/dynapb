@@ -16,7 +16,7 @@ interface PbWriter {
 
     /**
      * write to {@link OutputStream}
-     * @param os
+     * @param os {@link OutputStream}
      * @return
      * @throws IOException
      */
@@ -24,7 +24,7 @@ interface PbWriter {
 
     /**
      *  write to {@link ByteBuffer}
-     * @param buffer
+     * @param buffer {@link ByteBuffer}
      * @return
      */
     int write(final ByteBuffer buffer);

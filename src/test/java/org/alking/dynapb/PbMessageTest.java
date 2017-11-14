@@ -24,10 +24,10 @@ public class PbMessageTest {
         FooBar.Foo foo = builder.build();
         byte[] data = foo.toByteArray();
 
-        PbMessage msg = new PbMessage();
-        msg.read(data,0, data.length);
+        PbMessage msg = new PbMessage(data.length);
+        msg.read(data,0);
 
-        List<PbField> sf = msg.getFieldList(5);
+        List<PbField> sf = msg.getFieldByFieldNum(5);
         Assert.assertTrue(sf.size() == 1);
         // check i am ok string
         PbValue sfv = (PbValue) sf.get(0).getValue();
@@ -41,7 +41,7 @@ public class PbMessageTest {
         double dv = 3.0d;
         boolean bv = true;
         String sv = "i am ok";
-        PbMessage msg = new PbMessage();
+        PbMessage msg = new PbMessage(0);
         msg.addField( new PbField(1,PbVarInt.valueOf(lv)) );
         msg.addField( new PbField(2,PbVarInt.valueOf(fv)) );
         msg.addField( new PbField(3,PbVarInt.valueOf(dv)) );
