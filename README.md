@@ -19,6 +19,19 @@ byte[] data = DynaPb.encode(src);
 ......
 class Foo {
 
+    @PbSerializedField(1)
+    private Long lv;
+    
+    public Long getLv() {
+        return lv;
+    }
+    
+    public void setLv(Long lv) {
+        this.lv = lv;
+    }
+    
+    public Foo(){
+    }
 }
 byte[] data = ...
 Foo foo = DynaPb.decode(data, 0, data.length, Foo.class);
