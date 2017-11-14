@@ -155,6 +155,9 @@ public class DynaPbTest {
         Assert.assertEquals(originD, a.getDv(), 0.00001f);
         Assert.assertEquals(originB, a.getBv());
         Assert.assertEquals(originS, a.getSv());
+
+        byte[] data2 = DynaPb.encode(a);
+        Assert.assertArrayEquals(data, data2);
     }
 
     @Test
@@ -176,5 +179,8 @@ public class DynaPbTest {
         Assert.assertEquals(new Integer(i2) ,dbar.getLl().get(0));
         Assert.assertEquals(new Integer(i3) ,dbar.getLl().get(1));
         Assert.assertEquals(new Integer(i4) ,dbar.getLl().get(2));
+
+        byte[] data2 = DynaPb.encode(dbar);
+        Assert.assertArrayEquals(data, data2);
     }
 }
