@@ -185,6 +185,22 @@ public class DynaPbTest {
 
         byte[] data2 = DynaPb.encode(a);
         Assert.assertArrayEquals(data, data2);
+
+        // encode use google pb
+        int times = 10000 * 100;
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < times; i++){
+            foo.toByteArray();
+        }
+        long end = System.currentTimeMillis();
+        System.out.println(String.format("encode with google pb %d bytes %d times, cost %d ms", data.length, times, (end - start)));
+
+        start = System.currentTimeMillis();
+        for (int i = 0; i < times; i++){
+            DynaPb.encode(a);
+        }
+        end = System.currentTimeMillis();
+        System.out.println(String.format("encode with dyna pb %d bytes %d times, cost %d ms", data.length, times, (end - start)));
     }
 
     @Test
@@ -210,7 +226,8 @@ public class DynaPbTest {
         for (String v : sl) {
             builder.addSv(v);
         }
-        byte[] data = builder.build().toByteArray();
+        FooBar.Bar bar = builder.build();
+        byte[] data = bar.toByteArray();
         System.out.println(String.format("encode length %d", data.length));
         AA aa = DynaPb.decode(data, 0, data.length, AA.class);
 
@@ -232,5 +249,20 @@ public class DynaPbTest {
         byte[] data2 = DynaPb.encode(aa);
         Assert.assertArrayEquals(data, data2);
         System.out.println("encode and decode list pass");
+
+        int times = 10000 * 100;
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < times; i++){
+            bar.toByteArray();
+        }
+        long end = System.currentTimeMillis();
+        System.out.println(String.format("encode with google pb %d bytes %d times, cost %d ms", data.length, times, (end - start)));
+
+        start = System.currentTimeMillis();
+        for (int i = 0; i < times; i++){
+            DynaPb.encode(aa);
+        }
+        end = System.currentTimeMillis();
+        System.out.println(String.format("encode with dyna pb %d bytes %d times, cost %d ms", data.length, times, (end - start)));
     }
 }
