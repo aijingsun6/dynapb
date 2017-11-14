@@ -6,7 +6,27 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * <p>support field type: </p>
+ * <ul>
+ *     <li>{@link Boolean} or boolean </li>
+ *     <li>{@link Integer} or int </li>
+ *     <li>{@link Long} or long </li>
+ *     <li>{@link Float} or float </li>
+ *     <li>{@link Double} or double </li>
+ *     <li>{@link String}</li>
+ *     <li>byte[]</li>
+ *     <li> CustomClass </li>
+ *     <li>{@link List}&lt;{@link Boolean}&gt; </li>
+ *     <li>{@link List}&lt;{@link Integer}&gt; </li>
+ *     <li>{@link List}&lt;{@link Long}&gt; </li>
+ *     <li>{@link List}&lt;{@link Float}&gt; </li>
+ *     <li>{@link List}&lt;{@link Double}&gt; </li>
+ *     <li>{@link List}&lt;{@link String}&gt; </li>
+ *     <li>{@link List}&lt;byte[]&gt; </li>
+ *     <li>{@link List}&lt;CustomClass&gt; </li>
+ * </ul>
+ */
 public class DynaPb {
 
 
@@ -25,9 +45,8 @@ public class DynaPb {
             String name = f.getName();
             PbSerializedName anno = f.getAnnotation(PbSerializedName.class);
             if(anno == null){
-                throw new PbException(String.format("field %s has no annotation.", name));
+                continue;
             }
-
             int fieldNum = anno.fieldNum();
             // check duplicate field number
             if(map.containsKey(fieldNum)){
