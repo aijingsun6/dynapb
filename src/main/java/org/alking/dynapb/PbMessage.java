@@ -63,15 +63,32 @@ import java.util.List;
  */
 final class PbMessage implements PbRW {
 
-    private List<PbField> fields = new ArrayList<>();
+    private enum Mode {
+        /**
+         * encode mode
+         */
+        ENCODE,
+
+        /**
+         * decode mode
+         */
+        DECODE
+    }
+
+    private final List<PbField> fields = new ArrayList<>();
 
     private int size = 0;
+
+    private final Mode mode;
 
     public List<PbField> getFields() {
         return fields;
     }
 
     public void addField(PbField field) {
+        if(!this.mode.equals(Mode.ENCODE)){
+            throw new IllegalArgumentException("mode error");
+        }
         this.fields.add(field);
         this.size += field.size();
     }
@@ -86,14 +103,17 @@ final class PbMessage implements PbRW {
         return result;
     }
 
+
     public PbMessage(int size) {
+        this.mode = Mode.DECODE;
         this.size = size;
     }
 
     public PbMessage(List<PbField> fields) {
+        this.mode = Mode.ENCODE;
         this.fields.clear();
         for (PbField f : fields) {
-            this.fields.add(f);
+            this.addField( f );
         }
     }
 

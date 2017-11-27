@@ -201,6 +201,19 @@ public class DynaPbTest {
         }
         end = System.currentTimeMillis();
         System.out.println(String.format("encode with dyna pb %d bytes %d times, cost %d ms", data.length, times, (end - start)));
+
+        start = System.currentTimeMillis();
+        FooMan fm = new FooMan();
+        fm.setLv( originL);
+        fm.setFv(originF);
+        fm.setDv(originD);
+        fm.setBv(originB);
+        fm.setSv(originS);
+        for (int i = 0; i < times; i++){
+            fm.toBytes();
+        }
+        end = System.currentTimeMillis();
+        System.out.println(String.format("encode with man class %d bytes %d times, cost %d ms", data.length, times, (end - start)));
     }
 
     @Test

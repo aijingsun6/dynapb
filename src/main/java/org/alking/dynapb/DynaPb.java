@@ -284,7 +284,7 @@ public class DynaPb {
     }
 
     public static byte[] encode(Object src) throws IllegalAccessException {
-        PbMessage msg = new PbMessage(0);
+        PbMessage msg = new PbMessage(new ArrayList<>());
         encodeObj(msg, src.getClass(), src);
         int size = msg.size();
         byte[] data = new byte[size];
